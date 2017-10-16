@@ -1,0 +1,9 @@
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\FileSystemViewer.ORM.dll.config
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\FileSystemViewer.ORM.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\FileSystemViewer.ORM.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\EntityFramework.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\EntityFramework.xml
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\obj\Debug\FileSystemViewer.ORM.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.ORM\obj\Debug\FileSystemViewer.ORM.pdb

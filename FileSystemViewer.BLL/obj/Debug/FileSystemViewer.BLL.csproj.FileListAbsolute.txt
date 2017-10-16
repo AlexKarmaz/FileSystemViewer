@@ -1,0 +1,9 @@
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\bin\Debug\FileSystemViewer.BLL.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\bin\Debug\FileSystemViewer.BLL.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\bin\Debug\FileSystemViewer.BLL.Interface.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\bin\Debug\FileSystemViewer.DAL.Interface.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\bin\Debug\FileSystemViewer.BLL.Interface.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\bin\Debug\FileSystemViewer.DAL.Interface.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\obj\Debug\FileSystemViewer.BLL.csprojResolveAssemblyReference.cache
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\obj\Debug\FileSystemViewer.BLL.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.BLL\obj\Debug\FileSystemViewer.BLL.pdb

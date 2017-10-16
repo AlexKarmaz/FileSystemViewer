@@ -1,0 +1,14 @@
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.DAL.dll.config
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.DAL.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.DAL.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\EntityFramework.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.DAL.Interface.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.ORM.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.DAL.Interface.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\FileSystemViewer.ORM.pdb
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\EntityFramework.xml
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\obj\Debug\FileSystemViewer.DAL.csprojResolveAssemblyReference.cache
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\obj\Debug\FileSystemViewer.DAL.dll
+c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL\obj\Debug\FileSystemViewer.DAL.pdb
