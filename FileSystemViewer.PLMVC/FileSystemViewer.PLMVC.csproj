@@ -218,7 +218,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AjaxHelperExtention.cs" />
+    <Compile Include="Infrastructure\Mappers\DirectoryMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\FileMapper.cs" />
     <Compile Include="Infrastructure\Mappers\RoleMapper.cs" />
+    <Compile Include="Models\Directory\DirectoryViewModel.cs" />
+    <Compile Include="Models\ExplorerViewModel.cs" />
+    <Compile Include="Models\File\FileViewModel.cs" />
     <Compile Include="Models\User\LogViewModel.cs" />
     <Compile Include="Models\User\RegisterViewModel.cs" />
     <Compile Include="Models\ViewRole.cs" />

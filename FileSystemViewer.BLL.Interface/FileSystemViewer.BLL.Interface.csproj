@@ -39,8 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BllDirectory.cs" />
+    <Compile Include="Entities\BllFile.cs" />
     <Compile Include="Entities\BllRole.cs" />
     <Compile Include="Entities\BllUser.cs" />
+    <Compile Include="Interfaces\IDirectoryService.cs" />
+    <Compile Include="Interfaces\IFileService.cs" />
     <Compile Include="Interfaces\IRoleService.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
