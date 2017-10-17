@@ -44,3 +44,10 @@ c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer
 c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Microsoft.Practices.Unity.Mvc.dll
 c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\WebActivatorEx.dll
 c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Antlr3.Runtime.dll
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Newtonsoft.Json.dll
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\System.Web.Optimization.dll
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\WebGrease.dll
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Antlr3.Runtime.pdb
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Newtonsoft.Json.xml
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\System.Web.Optimization.xml

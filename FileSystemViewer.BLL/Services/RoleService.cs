@@ -97,5 +97,22 @@ namespace FileSystemViewer.BLL.Services
 			var exp = Expression.Lambda<Func<DalRole, bool>>(visitor.Visit(predicates.Body), visitor.NewParameter);
 			return roleRepository.GetAllByPredicate(exp).Select(role => role.ToBllRole()).ToList();
 		}
+
+		public void AddRoleToUser(int userId, int roleId)
+		{
+			roleRepository.AddRoleToUser(userId, roleId);
+			unitOfWork.Commit();
+		}
+
+		public void RemoveRoleFromUser(int userId, int roleId)
+		{
+			roleRepository.RemoveRoleFromUser(userId, roleId);
+			unitOfWork.Commit();
+		}
+
+		public IEnumerable<BllRole> GetUserRoles(int userId)
+		{
+			return roleRepository.GetUserRoles(userId).Select(role => role.ToBllRole());
+		}
 	}
 }

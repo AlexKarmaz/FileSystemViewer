@@ -16,5 +16,9 @@ namespace FileSystemViewer.BLL.Interface.Interfaces
 		///// <param name="roleName">Rolename</param>
 		///// <returns>bool value</returns>
 		//bool IsUserInRole(string userName, string roleName);
+		void AddRoleToUser(int userId, int roleId);
+		void RemoveRoleFromUser(int userId, int roleId);
+		IEnumerable<BllRole> GetUserRoles(int userId);
+
 	}
 }

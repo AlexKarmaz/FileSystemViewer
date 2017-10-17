@@ -74,5 +74,37 @@ namespace FileSystemViewer.DAL.Concrete.Repositories
 			var final = context.Set<Role>().Where(express).ToList();
 			return final.Select(r => r.ToDalRole());
 		}
+
+		public void AddRoleToUser(int userId, int roleId)
+		{
+			if (userId != null && roleId != null)
+			{
+				var role = context.Set<Role>().FirstOrDefault(r => r.RoleId == roleId);
+				var user = context.Set<User>().FirstOrDefault(u => u.UserId == userId);
+				if (user != null && role != null)
+				{
+					user.Roles.Add(role);
+				}
+			}
+		}
+
+		public void RemoveRoleFromUser(int userId, int roleId)
+		{
+			if (userId != null && roleId != null)
+			{
+				var role = context.Set<Role>().FirstOrDefault(r => r.RoleId == roleId);
+				var user = context.Set<User>().FirstOrDefault(u => u.UserId == userId);
+				if (user != null && role != null)
+				{
+					user.Roles.Remove(role);
+				}
+			}
+		}
+
+		public IEnumerable<DalRole> GetUserRoles(int userId)
+		{
+			var user = context.Set<User>().FirstOrDefault(u => u.UserId == userId);
+			return user != null ? user.Roles.Select(r => r.ToDalRole()) : null;
+		}
 	}
 }

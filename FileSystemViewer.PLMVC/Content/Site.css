@@ -1,0 +1,128 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.login-dropdown {
+    margin-right: 40px;
+    font-size: 20px;
+}
+
+.copyright {
+    display: flex;
+    justify-content: space-between;
+}
+
+.copyright-content {
+    margin: 0 50px;
+}
+
+.copyright-content.social{
+    display: flex;
+    margin-right: 30px;
+}
+
+.btn-social-icon {
+    margin-right: 5px;
+}
+
+.navbar-brand {
+    font-size: 20px;
+}
+
+.navbar-create {
+    font-size: 20px;
+}
+
+.layout_container {
+    margin-top: 10px;
+}
+
+.loading {
+    margin:auto;
+}
+
+.dropdown-list {
+    display: flex;
+}
+
+.dropdown-input {
+    color: black;
+}
+
+.advertising{
+    margin-top: 22px;
+    margin-left: 6px;
+}
+
+.search-sumbl{
+    color: white;
+}
+
+.search{
+    margin-top: 19px;
+    display: -webkit-box;
+}
+
+.start-test-link{
+    color:orange;
+}
+
+.edit-question-save{
+    display: flex;
+}
+
+.create-test-question{
+    display: flex;
+}
+
+.advertising-image{
+    width: 150px;
+}
+
+.profile-text{
+    font-size: x-large;
+}
+
+.title-test{
+    font-size: 60px;
+}
+
+.create-theme{
+    display: flex;
+}
+
+.clock{
+    float: right;
+    margin-right: 25px;
+    color: yellowgreen;
+}
+
+.importBar{
+    display: flex;
+}
+
+.importBtn{
+    margin-left: auto;
+    margin-top: auto;
+}

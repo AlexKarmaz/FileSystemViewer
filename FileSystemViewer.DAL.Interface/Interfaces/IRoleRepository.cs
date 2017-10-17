@@ -11,5 +11,8 @@ namespace FileSystemViewer.DAL.Interface.Interfaces
 	public interface IRoleRepository : IRepository<DalRole>
 	{
 		//bool IsUserInRole(string userName, string roleName);
+		void AddRoleToUser(int userId, int roleId);
+		void RemoveRoleFromUser(int userId, int roleId);
+		IEnumerable<DalRole> GetUserRoles(int userId);
 	}
 }

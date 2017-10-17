@@ -1,0 +1,22 @@
+﻿@using FileSystemViewer.PLMVC.Infrastructure
+
+@if (User.Identity.IsAuthenticated)
+{
+    <li class="dropdown">
+        <a class="dropdown-toggle login-dropdown" data-toggle="dropdown" role="button">@User.Identity.Name <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-list">
+                @Ajax.ActionLinkWithGlyphicon("glyphicon glyphicon-home", "Manage", "GetAllUsers", "Account", new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading" })
+            </li>
+            <li class="divider"></li>
+            <li><a href="@Url.Action("LogOff", "Account")"><i class="glyphicon glyphicon-log-out"></i>Exit</a></li>
+        </ul>
+    </li>
+}
+else
+{
+    <div class="form-inline navbar-form">
+        <button type="button" id="nav_button_register" class="btn btn-primary">Register</button>
+        <button type="button" id="nav_button_login" class="btn btn-default">Login</button>
+    </div>
+}

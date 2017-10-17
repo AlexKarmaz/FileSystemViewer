@@ -2,3 +2,4 @@ c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer
 c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL.Interface\bin\Debug\FileSystemViewer.DAL.Interface.pdb
 c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL.Interface\obj\Debug\FileSystemViewer.DAL.Interface.dll
 c:\users\aleksey_karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL.Interface\obj\Debug\FileSystemViewer.DAL.Interface.pdb
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.DAL.Interface\obj\Debug\FileSystemViewer.DAL.Interface.csprojResolveAssemblyReference.cache
