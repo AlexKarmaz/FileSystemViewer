@@ -213,15 +213,19 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DirectoryController.cs" />
+    <Compile Include="Controllers\DriveController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AjaxHelperExtention.cs" />
     <Compile Include="Infrastructure\Mappers\DirectoryMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\DriveMapper.cs" />
     <Compile Include="Infrastructure\Mappers\FileMapper.cs" />
     <Compile Include="Infrastructure\Mappers\RoleMapper.cs" />
     <Compile Include="Models\Directory\DirectoryViewModel.cs" />
+    <Compile Include="Models\Drive\DriveViewModel.cs" />
     <Compile Include="Models\ExplorerViewModel.cs" />
     <Compile Include="Models\File\FileViewModel.cs" />
     <Compile Include="Models\User\LogViewModel.cs" />
@@ -245,6 +249,8 @@
     <Content Include="Views\Shared\_LoginMenu.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Drive\GetDrives.cshtml" />
+    <Content Include="Views\Directory\GetAllDirectory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

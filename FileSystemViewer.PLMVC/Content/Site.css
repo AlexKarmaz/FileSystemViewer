@@ -126,3 +126,11 @@ textarea {
     margin-left: auto;
     margin-top: auto;
 }
+
+.pathPlace {
+     border: 4px double black;
+}
+
+.item:hover {
+    background-color: lightskyblue;
+}

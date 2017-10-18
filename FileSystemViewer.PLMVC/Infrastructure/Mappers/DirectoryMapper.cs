@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using FileSystemViewer.BLL.Interface.Entities;
+using FileSystemViewer.PLMVC.Models;
 using FileSystemViewer.PLMVC.Models.Directory;
 
 namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
@@ -24,6 +25,17 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 			{
 				Name = directory.Name,
 				LastAccessTime = directory.LastAccessTime
+			};
+		}
+
+		public static ExplorerViewModel ToExplorerObject(this BllDirectory directory)
+		{
+			return new ExplorerViewModel
+			{
+				Name = directory.Name,
+				Type = "Folder",
+				LastAccessTime = directory.LastAccessTime,
+				Size = ""
 			};
 		}
 	}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.Drive.DriveViewModel>
+@{
+    var uriPath = (string)HttpContext.Current.Request.RequestContext.RouteData.Values["path"];
+    Uri uri = Request.Url;
+}
+
+
+<div class="pathPlace">The computer\</div>
+
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DriveType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalFreeSpace)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="item" id="item-@item.Name">
+                <th>img</th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DriveType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalSize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalFreeSpace)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+<script>
+    $(document).ready(function () {
+        $(".item").dblclick(function () {
+            var path = $(".pathPlace").text();
+            path = path.substr(13, path.length);
+            console.log(path);
+            var index = this.id.indexOf("-") + 1;
+            var url = "/Directory/GetAllDirectory/" + path + this.id.substr(index, this.id.length);
+            url = encodeURI(url);
+            $('.item').unbind();
+            $('#main_container').load(url);
+        });
+    });
+</script>
+

@@ -7,40 +7,27 @@ using System.Threading.Tasks;
 using FileSystemViewer.BLL.Interface.Entities;
 using FileSystemViewer.BLL.Interface.Interfaces;
 
+
 namespace FileSystemViewer.BLL.Services
 {
-	public class FileService : IFileService
+	public class DriveService : IDriveService
 	{
-		public IEnumerable<BllFile> GetAllFiles(string path)
+		public IEnumerable<BllDrive> GetDrives()
 		{
-			return Directory.EnumerateFiles(path)
-				.Select(fileName => new FileInfo(fileName))
-				.Select(fileInfo => new BllFile
-				{
-					Name = fileInfo.Name,
-					FileSize = SizeConverter(fileInfo.Length),
-					Extension = fileInfo.Extension,
-					LastAccessTime = fileInfo.LastAccessTime
-				})
-				.ToList();
-		}
+			IList<BllDrive> bllDrives = new List<BllDrive>();
+			var drives = DriveInfo.GetDrives();
 
-		public BllFile GetFile(int id)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void CreateFile(BllFile entity)
-		{
-			throw new System.NotImplementedException();
-		}
-
-		public void DeleteFile(string path)
-		{
-			if (File.Exists(path))
+			foreach (DriveInfo drive in drives)
 			{
-				File.Delete(path);
+				BllDrive newDrive = new BllDrive();
+				newDrive.Name = drive.Name;
+				newDrive.DriveType = drive.DriveType.ToString();
+				newDrive.TotalSize = SizeConverter(drive.TotalSize) ;
+				newDrive.TotalFreeSpace = SizeConverter(drive.TotalFreeSpace);
+				bllDrives.Add(newDrive);
 			}
+
+			return bllDrives;
 		}
 
 		private string SizeConverter(long size)

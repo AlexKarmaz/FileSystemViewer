@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FileSystemViewer.BLL.Interface.Entities
 {
-	public class BllFile
+	public class BllDrive
 	{
 		public string Name { get; set; }
-		public string FileSize { get; set; }
-		public string Extension { get; set; }
-		public DateTime LastAccessTime { get; set; }
+		public string DriveType { get; set; }
+		public string TotalSize { get; set; }
+		public string TotalFreeSpace { get; set; }
 	}
 }

@@ -9,7 +9,9 @@ namespace FileSystemViewer.PLMVC.Models
 {
 	public class ExplorerViewModel
 	{
-		public IEnumerable<DirectoryViewModel> Directories;
-		public IEnumerable<FileViewModel> Files;
+		public string Name { get; set; }
+		public string Type { get; set; }
+		public string Size { get; set; }
+		public DateTime LastAccessTime { get; set; }
 	}
 }

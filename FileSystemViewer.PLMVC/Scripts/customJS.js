@@ -6,5 +6,4 @@
     $('button#nav_button_register').click(function () {
         location.href = window.location.origin + "/Account/Register";
     });
-
 });

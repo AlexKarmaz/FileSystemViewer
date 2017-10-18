@@ -16,7 +16,7 @@ namespace FileSystemViewer.PLMVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{*path}",
-				defaults: new { controller = "Home", action = "Index", path = UrlParameter.Optional }
+				defaults: new { controller = "Drive", action = "GetDrives" }
             );
         }
     }
