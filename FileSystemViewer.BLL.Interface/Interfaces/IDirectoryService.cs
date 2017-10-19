@@ -13,5 +13,6 @@ namespace FileSystemViewer.BLL.Interface.Interfaces
 		BllDirectory GetDirectory(int id);
 		void CreateDirectory(string path);
 		void DeleteDirectory(string path);
+        string GetParrent(string path);
 	}
 }

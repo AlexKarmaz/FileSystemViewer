@@ -61,5 +61,49 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return PartialView(explorerObjects);
 			return View(explorerObjects);
 		}
+
+
+	    [HttpGet]
+	    public ActionResult DeleteDirectory(string path = "")
+	    {
+			if (path == "")
+			{
+				return Redirect("/Drive/GetDrives/");
+			}
+
+			if (path.Last() != '/')
+			{
+				path = path + '/';
+			}
+
+			if (path.Length > 1)
+			{
+				path = path.Insert(1, ":");
+			}
+
+		    directoryService.DeleteDirectory(path);
+		    string newPath = directoryService.GetParrent(path);
+
+			var dirListModel = directoryService.GetAllDirectories(newPath).Select(d => d.ToExplorerObject());
+			var fileListModel = fileService.GetAllFiles(newPath).Select(f => f.ToExplorerObject());
+
+			List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
+			foreach (var obj in dirListModel)
+			{
+				explorerObjects.Add(obj);
+			}
+
+			foreach (var obj in fileListModel)
+			{
+				explorerObjects.Add(obj);
+			}
+			newPath = newPath.Remove(1, 1);
+			newPath = newPath.Replace("\\", "\\\\");
+			ViewBag.LastPath = newPath;
+
+			if (Request.IsAjaxRequest())
+				return PartialView("GetAllDirectory",explorerObjects);
+			return View("GetAllDirectory",explorerObjects);
+	    }
     }
 }

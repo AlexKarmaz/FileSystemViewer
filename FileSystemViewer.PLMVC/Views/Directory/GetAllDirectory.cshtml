@@ -7,7 +7,7 @@
 
 <div class="url-row">
     <img src="~/Content/images/back.png" id="back-image"/>
-    <div class="pathPlace">The computer\@ViewBag.LastPath</div>
+    <div class="pathPlace">The computer\\@ViewBag.LastPath</div>
 </div>
 
 <table class="table">
@@ -48,9 +48,7 @@
             @Html.DisplayFor(modelItem => item.Size)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Ajax.ActionLink("Delete", "DeleteDirectory", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\"}, new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this folder?" })
         </td>
     </tr>
     }
@@ -73,9 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Size)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new {  id=@ViewBag.LastPath })
             </td>
         </tr>
     }
@@ -85,6 +81,7 @@
 <script>
     $(document).ready(function () {
         $(".folder").dblclick(function () {
+            debugger;
             var path = $(".pathPlace").text();
             path = path.substr(13, path.length);
             var index = this.id.indexOf("-") + 1;

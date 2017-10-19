@@ -41,5 +41,11 @@ namespace FileSystemViewer.BLL.Services
 				Directory.Delete(path, true);
 			}
 		}
+
+		public string GetParrent(string path)
+		{
+			string newPath = Directory.GetParent(path).ToString();
+			return Directory.GetParent(newPath).ToString();
+		}
 	}
 }
