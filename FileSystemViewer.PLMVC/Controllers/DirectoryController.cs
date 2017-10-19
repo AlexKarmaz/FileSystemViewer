@@ -11,6 +11,7 @@ using FileSystemViewer.PLMVC.Models.Directory;
 
 namespace FileSystemViewer.PLMVC.Controllers
 {
+	[Authorize]
     public class DirectoryController : Controller
     {
         
@@ -54,7 +55,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				explorerObjects.Add(obj);
 			}
 			path = path.Remove(1, 1);
-			path = path.Replace("/","\\");
+			path = path.Replace("/","\\\\");
 			ViewBag.LastPath = path;
 			if (Request.IsAjaxRequest())
 				return PartialView(explorerObjects);

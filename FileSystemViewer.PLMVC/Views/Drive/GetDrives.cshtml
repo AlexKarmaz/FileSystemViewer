@@ -4,8 +4,10 @@
     Uri uri = Request.Url;
 }
 
+<div>
+    <div class="pathPlace">The computer\</div>
+</div>
 
-<div class="pathPlace">The computer\</div>
 
     <table class="table">
         <tr>
@@ -27,8 +29,10 @@
 
         @foreach (var item in Model)
         {
-            <tr class="item" id="item-@item.Name">
-                <th>img</th>
+            <tr class="item drive" id="item-@item.Name">
+                <th>
+                    <img src="~/Content/images/drive.png" />
+                </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -49,10 +53,9 @@
 
 <script>
     $(document).ready(function () {
-        $(".item").dblclick(function () {
+        $(".drive").dblclick(function () {
             var path = $(".pathPlace").text();
             path = path.substr(13, path.length);
-            console.log(path);
             var index = this.id.indexOf("-") + 1;
             var url = "/Directory/GetAllDirectory/" + path + this.id.substr(index, this.id.length);
             url = encodeURI(url);

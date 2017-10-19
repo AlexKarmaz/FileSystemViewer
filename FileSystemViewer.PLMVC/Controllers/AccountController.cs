@@ -40,7 +40,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				if (new CustomMembershipProvider().ValidateUser(model.UserName, model.Password))
 				{
 					FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("GetDrives", "Drive");
 				}
 				else
 					ModelState.AddModelError("", "Invalid username or password");
@@ -72,7 +72,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				if (membershipUser != null)
 				{
 					FormsAuthentication.SetAuthCookie(viewModel.UserName, false);
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("GetDrives", "Drive");
 				}
 			}
 

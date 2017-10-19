@@ -9,6 +9,7 @@ using FileSystemViewer.PLMVC.Models.Drive;
 
 namespace FileSystemViewer.PLMVC.Controllers
 {
+	[Authorize]
     public class DriveController : Controller
     {
 		private readonly IDriveService driveService;

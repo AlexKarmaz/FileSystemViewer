@@ -129,8 +129,13 @@ textarea {
 
 .pathPlace {
      border: 4px double black;
+     width: -webkit-fill-available;
 }
 
 .item:hover {
     background-color: lightskyblue;
+}
+
+.url-row{
+    display: flex;
 }
