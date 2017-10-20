@@ -13,5 +13,6 @@ namespace FileSystemViewer.BLL.Interface.Interfaces
 		BllFile GetFile(int id);
 		void CreateFile(BllFile entity);
 		void DeleteFile(string path);
+		string GetParrent(string path);
 	}
 }

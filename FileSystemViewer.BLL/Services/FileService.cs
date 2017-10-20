@@ -43,6 +43,13 @@ namespace FileSystemViewer.BLL.Services
 			}
 		}
 
+		public string GetParrent(string path)
+		{
+			FileInfo file = new FileInfo(path);
+			string newPath = file.Directory.FullName;
+			return newPath;
+		}
+
 		private string SizeConverter(long size)
 		{
 			string newSize = "";

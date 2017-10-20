@@ -71,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Size)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new {  id=@ViewBag.LastPath })
+                @Ajax.ActionLink("Delete", "DeleteFile", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\" }, new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this file?" })
             </td>
         </tr>
     }
@@ -81,7 +81,6 @@
 <script>
     $(document).ready(function () {
         $(".folder").dblclick(function () {
-            debugger;
             var path = $(".pathPlace").text();
             path = path.substr(13, path.length);
             var index = this.id.indexOf("-") + 1;
