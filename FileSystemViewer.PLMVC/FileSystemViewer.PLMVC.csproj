@@ -255,6 +255,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Drive\GetDrives.cshtml" />
     <Content Include="Views\Directory\GetAllDirectory.cshtml" />
+    <Content Include="Views\Directory\CreateFolder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

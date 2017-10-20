@@ -164,5 +164,61 @@ namespace FileSystemViewer.PLMVC.Controllers
 			return View("GetAllDirectory", explorerObjects);
 		}
 
+		[HttpGet]
+		public ActionResult CreateFolder(string path)
+		{
+
+			if (path.Last() != '/')
+			{
+				path = path + '/';
+			}
+
+			if (path.Length > 1)
+			{
+				path = path.Insert(1, ":");
+			}
+			if (Request.IsAjaxRequest())
+				return PartialView("CreateFolder", new DirectoryViewModel(){ParentDirectoryPath = path});
+			return View("CreateFolder", new DirectoryViewModel(){ParentDirectoryPath = path});
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult CreateFolder(DirectoryViewModel directoryModel)
+		{
+			string path = directoryModel.ParentDirectoryPath + directoryModel.Name;
+			if (directoryService.IsExist(path))
+			{
+				ModelState.AddModelError(String.Empty, "Such folder is already exists");
+		
+				return PartialView("CreateFolder", directoryModel);
+			}
+
+			if (ModelState.IsValid)
+			{
+				directoryService.CreateDirectory(path);
+
+				var dirListModel = directoryService.GetAllDirectories(directoryModel.ParentDirectoryPath).Select(d => d.ToExplorerObject());
+				var fileListModel = fileService.GetAllFiles(directoryModel.ParentDirectoryPath).Select(f => f.ToExplorerObject());
+
+				List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
+
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				foreach (var obj in fileListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+				//return Redirect(Url.Action("GetAllDirectory", directoryModel.ParentDirectoryPath));
+				return PartialView("GetAllDirectory", explorerObjects);
+			}
+
+			if (Request.IsAjaxRequest())
+				return PartialView( directoryModel);
+			return View( directoryModel);
+		}
     }
 }

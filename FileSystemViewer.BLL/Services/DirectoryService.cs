@@ -47,5 +47,14 @@ namespace FileSystemViewer.BLL.Services
 			string newPath = Directory.GetParent(path).ToString();
 			return Directory.GetParent(newPath).ToString();
 		}
+
+		public bool IsExist(string path)
+		{
+			if (Directory.Exists(path))
+			{
+				return true;
+			}
+			return false;
+		}
 	}
 }

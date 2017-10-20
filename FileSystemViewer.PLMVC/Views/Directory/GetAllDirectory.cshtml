@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
+<div id="modal">
+    @Html.Action("CreateFolder", "Directory", new { path = @ViewBag.LastPath })
+</div>
+@*<div>
+    @Ajax.ActionLink("Create folder", "CreateFolder", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "modal", LoadingElementId = "loading", HttpMethod = "GET", OnSuccess = "showDialog" })
+</div>*@
 
 <div class="url-row">
     <img src="~/Content/images/back.png" id="back-image"/>
@@ -101,6 +103,6 @@
             $('.item').unbind();
             $('#main_container').load(url);
         });
-
     });
+
 </script>

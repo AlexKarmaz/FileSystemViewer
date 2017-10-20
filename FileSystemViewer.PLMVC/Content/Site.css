@@ -139,3 +139,7 @@ textarea {
 .url-row{
     display: flex;
 }
+
+.custom-modal {
+    display: flex;
+}
