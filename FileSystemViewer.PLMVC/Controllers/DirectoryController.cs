@@ -29,6 +29,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[HttpGet]
 		public ActionResult GetAllDirectory(string path = "")
 		{
+			List<ExplorerViewModel> explorerObjects;
 			if (path == "")
 			{
 				return Redirect("/Drive/GetDrives/");
@@ -43,19 +44,31 @@ namespace FileSystemViewer.PLMVC.Controllers
 			{
 				path = path.Insert(1, ":");
 			}
-			var dirListModel = directoryService.GetAllDirectories(path).Select(d => d.ToExplorerObject());
-			var fileListModel = fileService.GetAllFiles(path).Select(f => f.ToExplorerObject());
 
-			List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
-			foreach (var obj in dirListModel)
+			try
 			{
-				explorerObjects.Add(obj);
-			}
+				var dirListModel = directoryService.GetAllDirectories(path).Select(d => d.ToExplorerObject());
+				var fileListModel = fileService.GetAllFiles(path).Select(f => f.ToExplorerObject());
 
-			foreach (var obj in fileListModel)
-			{
-				explorerObjects.Add(obj);
+
+				explorerObjects = new List<ExplorerViewModel>();
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				foreach (var obj in fileListModel)
+				{
+					explorerObjects.Add(obj);
+				}
 			}
+			catch (UnauthorizedAccessException e)
+			{
+				//return json
+				return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
+			}
+			
+
 			path = path.Remove(1, 1);
 			path = path.Replace("/","\\\\");
 			ViewBag.LastPath = path;

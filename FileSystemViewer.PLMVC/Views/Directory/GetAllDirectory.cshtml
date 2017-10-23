@@ -98,7 +98,22 @@
             var url = "/Directory/GetAllDirectory/" + newPath;
             url = encodeURI(url);
             $('.item').unbind();
-            $('#main_container').load(url);
+            //$('#main_container').load(url);
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    $('#main_container').html(result);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    debugger;
+                    if (errorThrown == "Not Acceptable") {
+                        alert("You don't have access to this directory!");
+                    }else{
+                        alert('oops, something bad happened');
+                    }
+                }
+            });
         });
 
         $("#back-image").click(function () {
