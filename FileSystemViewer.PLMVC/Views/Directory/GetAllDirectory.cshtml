@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerViewModel>
 
-<div id="modal">
-    @Html.Action("CreateFolder", "Directory", new { path = @ViewBag.LastPath })
-    @Html.Action("CreateFile", "Directory", new { path = @ViewBag.LastPath })
-</div>
-@*<div>
-    @Ajax.ActionLink("Create folder", "CreateFolder", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "modal", LoadingElementId = "loading", HttpMethod = "GET", OnSuccess = "showDialog" })
-</div>*@
+@if (User.IsInRole("admin"))
+{
+    <div id="modal">
+        @Html.Action("CreateFolder", "Directory", new {path = @ViewBag.LastPath})
+        @Html.Action("CreateFile", "Directory", new {path = @ViewBag.LastPath})
+    </div>
+}
 
 <div class="url-row">
     <img src="~/Content/images/back.png" id="back-image"/>
@@ -52,7 +52,10 @@
                     @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
-                    @Ajax.ActionLink("Delete", "DeleteDirectory", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\" }, new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this folder?" })
+                    @if (User.IsInRole("admin"))
+                    {
+                        @Ajax.ActionLink("Delete", "DeleteDirectory", "Directory", new {path = @ViewBag.LastPath + item.Name + "\\"}, new AjaxOptions {UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this folder?"})
+                    }
                 </td>
             </tr>
         }
@@ -75,7 +78,10 @@
                     @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
-                    @Ajax.ActionLink("Delete", "DeleteFile", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\" }, new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this file?" })
+                    @if (User.IsInRole("admin"))
+                    {
+                        @Ajax.ActionLink("Delete", "DeleteFile", "Directory", new {path = @ViewBag.LastPath + item.Name + "\\"}, new AjaxOptions {UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this file?"})
+                    }
                 </td>
             </tr>
         }

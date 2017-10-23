@@ -36,7 +36,9 @@ namespace FileSystemViewer.BLL.Services
 			{
 				return;
 			}
-			File.Create(path);
+			using (File.Create(path))
+			{
+			}
 		}
 
 		public void DeleteFile(string path)

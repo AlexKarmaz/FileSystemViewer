@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using FileSystemViewer.BLL.Interface.Interfaces;
+using FileSystemViewer.PLMVC.Infrastructure.Mappers;
 using FileSystemViewer.PLMVC.Models.User;
 using FileSystemViewer.PLMVC.Providers;
 
@@ -13,10 +15,12 @@ namespace FileSystemViewer.PLMVC.Controllers
 	public class AccountController : Controller
 	{
 		private readonly IUserService userService;
+		private readonly IRoleService roleService;
 
-		public AccountController(IUserService userService)
+		public AccountController(IUserService userService, IRoleService roleService)
 		{
 			this.userService = userService;
+			this.roleService = roleService;
 		}
 
 		[HttpGet]
@@ -83,6 +87,45 @@ namespace FileSystemViewer.PLMVC.Controllers
 		{
 			FormsAuthentication.SignOut();
 			return RedirectToAction("Login", "Account");
+		}
+
+		[Authorize(Roles = "admin")]
+		[HttpGet]
+		public ActionResult GetAllUsers()
+		{
+			var users = userService.GetAll()
+				.OrderBy(u => u.UserName)
+				.Select(u => u.ToMvcUser(roleService));
+
+			if (Request.IsAjaxRequest())
+				return PartialView(users);
+			return View(users);
+		}
+
+		[Authorize(Roles = "admin")]
+		[HttpPost]
+		public ActionResult UpdateUserRole(string userName, string roleName)
+		{
+			var user = userService.GetOneByPredicate(u => u.UserName == userName).ToMvcUser(roleService);
+			int userId = user.Id;
+
+			if (user == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			if (user.Roles.Contains(roleName))
+			{
+				roleService.RemoveRoleFromUser(userId, roleService.GetAll().FirstOrDefault(r => r.Name == roleName).Id);
+			}
+			else
+			{
+				roleService.AddRoleToUser(userId, roleService.GetAll().FirstOrDefault(r => r.Name == roleName).Id);
+			}
+
+			if (Request.IsAjaxRequest())
+				return PartialView(user);
+			return View(user);
 		}
 
 		//[HttpGet]

@@ -65,6 +65,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 
 	    [HttpGet]
+		[Authorize(Roles = "admin")]
 	    public ActionResult DeleteDirectory(string path = "")
 	    {
 			if (path == "")
@@ -116,6 +117,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 	    }
 
 		[HttpGet]
+		[Authorize(Roles = "admin")]
 		public ActionResult DeleteFile(string path = "")
 		{
 			if (path == "")
@@ -166,6 +168,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = "admin")]
 		public ActionResult CreateFolder(string path)
 		{
 
@@ -184,6 +187,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = "admin")]
 		[ValidateAntiForgeryToken]
 		public ActionResult CreateFolder(DirectoryViewModel directoryModel)
 		{
@@ -213,7 +217,14 @@ namespace FileSystemViewer.PLMVC.Controllers
 				{
 					explorerObjects.Add(obj);
 				}
+				path = directoryModel.ParentDirectoryPath.Remove(1, 1);
 
+				if (path.Last() != '\\')
+				{
+					path = path + "\\";
+				}
+				path = path.Replace("\\", "\\\\");
+				ViewBag.LastPath = path;
 				return PartialView("GetExplorerTable", explorerObjects);
 			}
 
@@ -223,9 +234,9 @@ namespace FileSystemViewer.PLMVC.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = "admin")]
 		public ActionResult CreateFile(string path)
 		{
-
 			if (path.Last() != '/')
 			{
 				path = path + '/';
@@ -242,6 +253,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 	    [HttpPost]
 	    [ValidateAntiForgeryToken]
+		[Authorize(Roles = "admin")]
 	    public ActionResult CreateFile(CreateFileViewModel fileModel)
 	    {
 			string path = fileModel.ParentDirectoryPath + fileModel.Name;
@@ -280,6 +292,14 @@ namespace FileSystemViewer.PLMVC.Controllers
 					explorerObjects.Add(obj);
 				}
 
+				path = fileModel.ParentDirectoryPath.Remove(1, 1);
+
+				if (path.Last() != '\\')
+				{
+					path = path + "\\";
+				}
+				path = path.Replace("\\", "\\\\");
+				ViewBag.LastPath = path;
 				return PartialView("GetExplorerTable", explorerObjects);
 			}
 

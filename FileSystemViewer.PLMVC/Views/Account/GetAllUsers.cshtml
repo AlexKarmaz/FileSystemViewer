@@ -1,0 +1,57 @@
+﻿
+@model IEnumerable<FileSystemViewer.PLMVC.Models.User.UserViewModel>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2>All users:</h2>
+
+<table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>User's roles</th>
+                    <th>Change user's role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr id="row@(user.Id)">
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @foreach (var role in user.Roles)
+                            {
+                                <div>@role</div>
+                            }
+                        </td>
+                        <td>
+                            <div>
+                                @if (User.Identity.Name == user.UserName)
+                                {
+                                    @:<p>You already have an admin role</p>
+                                }
+                                else
+                                {
+                                    if (!user.Roles.Contains("admin"))
+                                    {
+                                        @Ajax.ActionLink("Give an admin role", "UpdateUserRole", new { userName = user.UserName, roleName = "admin" },
+                                            new AjaxOptions { UpdateTargetId = "row" + user.Id, HttpMethod = "Post" },
+                                            new { @class = "btn btn-success" })
+                                    }
+                                    else
+                                    {
+                                        @Ajax.ActionLink("Take back an admin role", "UpdateUserRole", new { userName = user.UserName, roleName = "admin" },
+                                            new AjaxOptions { UpdateTargetId = "row" + user.Id, HttpMethod = "Post" },
+                                            new { @class = "btn btn-warning" })
+                                    }
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+

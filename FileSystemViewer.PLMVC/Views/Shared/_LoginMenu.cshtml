@@ -5,10 +5,13 @@
     <li class="dropdown">
         <a class="dropdown-toggle login-dropdown" data-toggle="dropdown" role="button">@User.Identity.Name <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-            <li class="dropdown-list">
-                @Ajax.ActionLinkWithGlyphicon("glyphicon glyphicon-home", "Manage", "GetAllUsers", "Account", new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading" })
-            </li>
-            <li class="divider"></li>
+            @if (User.IsInRole("admin"))
+            {
+                <li class="dropdown-list">
+                    @Ajax.ActionLinkWithGlyphicon("glyphicon glyphicon-home", "Manage", "GetAllUsers", "Account", new AjaxOptions {UpdateTargetId = "main_container", LoadingElementId = "loading"})
+                </li>
+               <li class="divider"></li>
+            }
             <li><a href="@Url.Action("LogOff", "Account")"><i class="glyphicon glyphicon-log-out"></i>Exit</a></li>
         </ul>
     </li>

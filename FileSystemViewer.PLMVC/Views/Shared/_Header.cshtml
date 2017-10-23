@@ -18,15 +18,6 @@
             }
         </ul>
         <ul class="nav navbar-nav navbar-right text-center">
-            @if (User.Identity.IsAuthenticated)
-            {
-                if (User.IsInRole("admin"))
-                {
-                    <li class="navbar-create">
-                        @Ajax.ActionLink("Manage", "GetAllUsers", "Account", new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading" })
-                    </li>
-                }
-            }
             <li>
                 @Html.Partial("_LoginMenu")
             </li>
