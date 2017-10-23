@@ -1,7 +1,7 @@
 ﻿@model FileSystemViewer.PLMVC.Models.Directory.DirectoryViewModel
 
 
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modDialog">Create folder</button>
+<button type="button" class="btn btn-info" id="modal-button">Create folder</button>
 
 <div id="modDialog" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog">
@@ -13,9 +13,10 @@
             @using (Ajax.BeginForm("CreateFolder", "Directory", FormMethod.Post, new AjaxOptions()
             {
                 InsertionMode = InsertionMode.Replace,
-                UpdateTargetId = "modDialog",
+                UpdateTargetId = "explorer-table",
                 LoadingElementId = "loading",
-                HttpMethod = "POST"
+                HttpMethod = "POST",
+                OnSuccess = "hideDialog"
             }))
             {
                 <div class="modal-body custom-modal">
@@ -39,14 +40,14 @@
     </div>
 </div>
 <script>
-    function showDialog() {
-        debugger;
-        $("#modDialog").modal("show");
-    };
+        $("#modal-button").click(function () {
+            alert("aaaaa");
+            $("#modDialog").modal("show");
+        });
 
-    function hideDialog() {
-        debugger;
-        var st = "";
-        $("#modDialog").modal("hide");
-    };
+
+        function hideDialog() {
+            $("#modDialog").modal("hide");
+        };
+   
 </script>

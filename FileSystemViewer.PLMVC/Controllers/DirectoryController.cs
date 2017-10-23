@@ -191,7 +191,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 			{
 				ModelState.AddModelError(String.Empty, "Such folder is already exists");
 		
-				return PartialView("CreateFolder", directoryModel);
+				return PartialView(directoryModel);
 			}
 
 			if (ModelState.IsValid)
@@ -212,8 +212,8 @@ namespace FileSystemViewer.PLMVC.Controllers
 				{
 					explorerObjects.Add(obj);
 				}
-				//return Redirect(Url.Action("GetAllDirectory", directoryModel.ParentDirectoryPath));
-				return PartialView("GetAllDirectory", explorerObjects);
+
+				return PartialView("GetExplorerTable", explorerObjects);
 			}
 
 			if (Request.IsAjaxRequest())

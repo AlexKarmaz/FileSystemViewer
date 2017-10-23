@@ -1,18 +1,6 @@
 ﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerViewModel>
 
-<div id="modal">
-    @Html.Action("CreateFolder", "Directory", new { path = @ViewBag.LastPath })
-</div>
-@*<div>
-    @Ajax.ActionLink("Create folder", "CreateFolder", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "modal", LoadingElementId = "loading", HttpMethod = "GET", OnSuccess = "showDialog" })
-</div>*@
-
-<div class="url-row">
-    <img src="~/Content/images/back.png" id="back-image"/>
-    <div class="pathPlace">The computer\\@ViewBag.LastPath</div>
-</div>
-
-<table class="table" id="explorer-table">
+<table class="table" id="explorer-table ">
     <tr>
         <th></th>
         <th>
