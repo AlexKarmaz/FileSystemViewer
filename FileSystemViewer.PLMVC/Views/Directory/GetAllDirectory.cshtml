@@ -2,6 +2,7 @@
 
 <div id="modal">
     @Html.Action("CreateFolder", "Directory", new { path = @ViewBag.LastPath })
+    @Html.Action("CreateFile", "Directory", new { path = @ViewBag.LastPath })
 </div>
 @*<div>
     @Ajax.ActionLink("Create folder", "CreateFolder", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "modal", LoadingElementId = "loading", HttpMethod = "GET", OnSuccess = "showDialog" })

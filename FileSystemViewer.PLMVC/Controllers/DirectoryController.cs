@@ -8,6 +8,7 @@ using FileSystemViewer.BLL.Interface.Interfaces;
 using FileSystemViewer.PLMVC.Infrastructure.Mappers;
 using FileSystemViewer.PLMVC.Models;
 using FileSystemViewer.PLMVC.Models.Directory;
+using FileSystemViewer.PLMVC.Models.File;
 
 namespace FileSystemViewer.PLMVC.Controllers
 {
@@ -220,5 +221,71 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return PartialView( directoryModel);
 			return View( directoryModel);
 		}
+
+		[HttpGet]
+		public ActionResult CreateFile(string path)
+		{
+
+			if (path.Last() != '/')
+			{
+				path = path + '/';
+			}
+
+			if (path.Length > 1)
+			{
+				path = path.Insert(1, ":");
+			}
+			if (Request.IsAjaxRequest())
+				return PartialView("CreateFile", new CreateFileViewModel() { ParentDirectoryPath = path });
+			return View("CreateFile", new CreateFileViewModel() { ParentDirectoryPath = path });
+		}
+
+	    [HttpPost]
+	    [ValidateAntiForgeryToken]
+	    public ActionResult CreateFile(CreateFileViewModel fileModel)
+	    {
+			string path = fileModel.ParentDirectoryPath + fileModel.Name;
+			if (fileService.IsExist(path))
+			{
+				ModelState.AddModelError(String.Empty, "Such file is already exists");
+
+				return PartialView(fileModel);
+			}
+		    bool a = fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4;
+		    bool b = fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3;
+
+			if (!(fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4 || fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3))
+			{
+				ModelState.AddModelError(String.Empty, "You forgot write file extension");
+
+				return PartialView(fileModel);
+			}
+
+			if (ModelState.IsValid)
+			{
+				fileService.CreateFile(path);
+
+				var dirListModel = directoryService.GetAllDirectories(fileModel.ParentDirectoryPath).Select(d => d.ToExplorerObject());
+				var fileListModel = fileService.GetAllFiles(fileModel.ParentDirectoryPath).Select(f => f.ToExplorerObject());
+
+				List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
+
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				foreach (var obj in fileListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				return PartialView("GetExplorerTable", explorerObjects);
+			}
+
+			if (Request.IsAjaxRequest())
+				return PartialView(fileModel);
+			return View(fileModel);
+	    }
     }
 }

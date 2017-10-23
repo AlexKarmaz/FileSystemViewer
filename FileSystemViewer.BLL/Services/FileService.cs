@@ -30,9 +30,13 @@ namespace FileSystemViewer.BLL.Services
 			throw new System.NotImplementedException();
 		}
 
-		public void CreateFile(BllFile entity)
+		public void CreateFile(string path)
 		{
-			throw new System.NotImplementedException();
+			if (File.Exists(path))
+			{
+				return;
+			}
+			File.Create(path);
 		}
 
 		public void DeleteFile(string path)
@@ -48,6 +52,15 @@ namespace FileSystemViewer.BLL.Services
 			FileInfo file = new FileInfo(path);
 			string newPath = file.Directory.FullName;
 			return newPath;
+		}
+
+		public bool IsExist(string path)
+		{
+			if (File.Exists(path))
+			{
+				return true;
+			}
+			return false;
 		}
 
 		private string SizeConverter(long size)

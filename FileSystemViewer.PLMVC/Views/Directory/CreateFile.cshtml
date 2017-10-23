@@ -1,23 +1,23 @@
-﻿@model FileSystemViewer.PLMVC.Models.Directory.DirectoryViewModel
+﻿@model FileSystemViewer.PLMVC.Models.File.CreateFileViewModel
 
 
-<button type="button" class="btn btn-success modal-button" id="modal-button-folder">Create folder</button>
+<button type="button" class="btn btn-success modal-button" id="modal-button-file">Create file</button>
 
 
-<div id="modDialog-folder" class="modal fade" tabindex="-1" role="dialog"  aria-hidden="true">
+<div id="modDialog-file" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button class="close" data-dismiss="modal" >x</button>
+                <button class="close" data-dismiss="modal">x</button>
                 <h4>Create new folder</h4>
             </div>
-            @using (Ajax.BeginForm("CreateFolder", "Directory", FormMethod.Post, new AjaxOptions()
+            @using (Ajax.BeginForm("CreateFile", "Directory", FormMethod.Post, new AjaxOptions()
             {
                 InsertionMode = InsertionMode.Replace,
                 UpdateTargetId = "explorer-table",
                 LoadingElementId = "loading",
                 HttpMethod = "POST",
-                OnSuccess = "hideFolderDialog"
+                OnSuccess = "hideFileDialog"
             }))
             {
                 <div class="modal-body custom-modal">
@@ -41,13 +41,13 @@
     </div>
 </div>
 <script>
-    $("#modal-button-folder").click(function () {
-            $("#modDialog-folder").modal("show");
+    $("#modal-button-file").click(function () {
+            $("#modDialog-file").modal("show");
         });
 
 
-        function hideFolderDialog() {
-            $("#modDialog-folder").modal("hide");
+        function hideFileDialog() {
+            $("#modDialog-file").modal("hide");
         };
-   
+
 </script>

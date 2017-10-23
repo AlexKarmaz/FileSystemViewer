@@ -11,8 +11,9 @@ namespace FileSystemViewer.BLL.Interface.Interfaces
 	{
 		IEnumerable<BllFile> GetAllFiles(string path);
 		BllFile GetFile(int id);
-		void CreateFile(BllFile entity);
+		void CreateFile(string path);
 		void DeleteFile(string path);
 		string GetParrent(string path);
+		bool IsExist(string path);
 	}
 }

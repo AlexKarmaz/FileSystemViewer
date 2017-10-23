@@ -231,6 +231,7 @@
     <Compile Include="Models\Directory\DirectoryViewModel.cs" />
     <Compile Include="Models\Drive\DriveViewModel.cs" />
     <Compile Include="Models\ExplorerViewModel.cs" />
+    <Compile Include="Models\File\CreateFileViewModel.cs" />
     <Compile Include="Models\File\FileViewModel.cs" />
     <Compile Include="Models\User\LogViewModel.cs" />
     <Compile Include="Models\User\RegisterViewModel.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Views\Directory\GetAllDirectory.cshtml" />
     <Content Include="Views\Directory\CreateFolder.cshtml" />
     <Content Include="Views\Directory\GetExplorerTable.cshtml" />
+    <Content Include="Views\Directory\CreateFile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
