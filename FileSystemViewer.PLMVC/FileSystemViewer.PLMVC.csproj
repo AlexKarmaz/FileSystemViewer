@@ -133,6 +133,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\httpErrors\error.png" />
+    <Content Include="Content\httpErrors\pageNotFound.jpg" />
+    <Content Include="Content\httpErrors\serverError.jpg" />
     <Content Include="Content\images\back.png" />
     <Content Include="Content\images\drive.png" />
     <Content Include="Content\images\file.png" />
@@ -219,6 +222,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Controllers\DriveController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,6 +266,9 @@
     <Content Include="Views\Directory\CreateFile.cshtml" />
     <Content Include="Views\Account\GetAllUsers.cshtml" />
     <Content Include="Views\Account\UpdateUserRole.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
@@ -171,6 +172,10 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 		public ActionResult CreateFolder(string path)
 		{
+			if (path == String.Empty)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 
 			if (path.Last() != '/')
 			{
@@ -191,6 +196,10 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult CreateFolder(DirectoryViewModel directoryModel)
 		{
+			if (directoryModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 			string path = directoryModel.ParentDirectoryPath + directoryModel.Name;
 			if (directoryService.IsExist(path))
 			{
@@ -237,6 +246,10 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 		public ActionResult CreateFile(string path)
 		{
+			if (path == String.Empty)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 			if (path.Last() != '/')
 			{
 				path = path + '/';
@@ -256,6 +269,11 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 	    public ActionResult CreateFile(CreateFileViewModel fileModel)
 	    {
+			if (fileModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
 			string path = fileModel.ParentDirectoryPath + fileModel.Name;
 			if (fileService.IsExist(path))
 			{
@@ -263,8 +281,6 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 				return PartialView(fileModel);
 			}
-		    bool a = fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4;
-		    bool b = fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3;
 
 			if (!(fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4 || fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3))
 			{
