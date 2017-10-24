@@ -219,9 +219,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 			string path = directoryModel.ParentDirectoryPath + directoryModel.Name;
 			if (directoryService.IsExist(path))
 			{
-				ModelState.AddModelError(String.Empty, "Such folder is already exists");
-		
-				return PartialView(directoryModel);
+				return Json(new { Status = "Exist" }, JsonRequestBehavior.AllowGet);
 			}
 
 			if (ModelState.IsValid)
@@ -299,17 +297,8 @@ namespace FileSystemViewer.PLMVC.Controllers
 			string path = fileModel.ParentDirectoryPath + fileModel.Name+"."+fileModel.Extension;
 			if (fileService.IsExist(path))
 			{
-				ModelState.AddModelError(String.Empty, "Such file is already exists");
-
-				return PartialView(fileModel);
+				return Json(new { Status = "Exist" }, JsonRequestBehavior.AllowGet);
 			}
-
-			//if (!(fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4 || fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3))
-			//{
-			//	ModelState.AddModelError(String.Empty, "You forgot write file extension");
-
-			//	return PartialView(fileModel);
-			//}
 
 			if (ModelState.IsValid)
 			{
