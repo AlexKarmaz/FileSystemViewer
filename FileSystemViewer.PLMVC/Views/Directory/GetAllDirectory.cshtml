@@ -97,8 +97,6 @@
             var newPath = path + this.id.substr(index, this.id.length);
             var url = "/Directory/GetAllDirectory/" + newPath;
             url = encodeURI(url);
-            //$('.item').unbind();
-            //$('#main_container').load(url);
             $.ajax({
                 url: url,
                 type: "GET",
@@ -121,8 +119,6 @@
             path = path.substr(0, lastPathIndex);
             var url = "/Directory/GetAllDirectory/" + path;
             url = encodeURI(url);
-           // $('.item').unbind();
-            //$('#main_container').load(url);
             $.ajax({
                 url: url,
                 type: "GET",

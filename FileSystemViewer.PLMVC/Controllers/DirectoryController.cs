@@ -30,6 +30,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 		public ActionResult GetAllDirectory(string path = "")
 		{
 			List<ExplorerViewModel> explorerObjects;
+
 			if (path == "")
 			{
 				return Redirect("/Drive/GetDrives/");
@@ -62,6 +63,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 			path = path.Remove(1, 1);
 			path = path.Replace("/","\\\\");
+
 			ViewBag.LastPath = path;
 			if (Request.IsAjaxRequest())
 				return PartialView(explorerObjects);
@@ -114,8 +116,8 @@ namespace FileSystemViewer.PLMVC.Controllers
 			{
 				newPath = newPath + "\\";
 			}
-
 			newPath = newPath.Replace("\\", "\\\\");
+
 			ViewBag.LastPath = newPath;
 
 			if (Request.IsAjaxRequest())
@@ -135,7 +137,18 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return Redirect("/Drive/GetDrives/");
 			}
 
-			path = PathValidation(path);
+			//path = PathValidation(path);
+
+			if (path.Last() == '/')
+ 			{
+ 				path = path.Remove(path.Length-1,1);
+ 			}
+ 
+ 			if (path.Length > 1)
+ 			{
+ 				path = path.Insert(1, ":");
+ 			}
+
 
 			try
 			{
@@ -169,6 +182,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				newPath = newPath + "\\";
 			}
 			newPath = newPath.Replace("\\", "\\\\");
+
 			ViewBag.LastPath = newPath;
 
 			if (Request.IsAjaxRequest())
@@ -244,6 +258,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 					path = path + "\\";
 				}
 				path = path.Replace("\\", "\\\\");
+
 				ViewBag.LastPath = path;
 				return PartialView("GetExplorerTable", explorerObjects);
 			}
@@ -281,7 +296,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 
-			string path = fileModel.ParentDirectoryPath + fileModel.Name;
+			string path = fileModel.ParentDirectoryPath + fileModel.Name+"."+fileModel.Extension;
 			if (fileService.IsExist(path))
 			{
 				ModelState.AddModelError(String.Empty, "Such file is already exists");
@@ -289,12 +304,12 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return PartialView(fileModel);
 			}
 
-			if (!(fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4 || fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3))
-			{
-				ModelState.AddModelError(String.Empty, "You forgot write file extension");
+			//if (!(fileModel.Name.IndexOf(".") == fileModel.Name.Length - 4 || fileModel.Name.IndexOf(".") == fileModel.Name.Length - 3))
+			//{
+			//	ModelState.AddModelError(String.Empty, "You forgot write file extension");
 
-				return PartialView(fileModel);
-			}
+			//	return PartialView(fileModel);
+			//}
 
 			if (ModelState.IsValid)
 			{
@@ -330,6 +345,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 					path = path + "\\";
 				}
 				path = path.Replace("\\", "\\\\");
+
 				ViewBag.LastPath = path;
 				return PartialView("GetExplorerTable", explorerObjects);
 			}

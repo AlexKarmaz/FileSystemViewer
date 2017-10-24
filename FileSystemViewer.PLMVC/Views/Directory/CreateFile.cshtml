@@ -1,5 +1,6 @@
-﻿@model FileSystemViewer.PLMVC.Models.File.CreateFileViewModel
-
+﻿@using System.Web.Optimization
+@model FileSystemViewer.PLMVC.Models.File.CreateFileViewModel
+@Scripts.Render("~/bundles/jqueryval")
 
 <button type="button" class="btn btn-success modal-button" id="modal-button-file">Create file</button>
 
@@ -9,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">x</button>
-                <h4>Create new folder</h4>
+                <h4>Create new file</h4>
             </div>
             @using (Ajax.BeginForm("CreateFile", "Directory", FormMethod.Post, new AjaxOptions()
             {
@@ -28,6 +29,11 @@
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(m => m.Extension, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Extension, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Extension, "", new { @class = "text-danger" })
                     </div>
                     @Html.HiddenFor(model => model.ParentDirectoryPath)
                     <div class="form-group">
