@@ -59,8 +59,21 @@
             var index = this.id.indexOf("-") + 1;
             var url = "/Directory/GetAllDirectory/" + path + this.id.substr(index, this.id.length);
             url = encodeURI(url);
-            $('.item').unbind();
-            $('#main_container').load(url);
+           // $('.item').unbind();
+           // $('#main_container').load(url);
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    if (result.Status == 'NotAcceptable') {
+                        alert("You don't have access to the directory");
+                    } else {
+                        $('.item').unbind();
+                        $('#main_container').html(result);
+                    }
+                },
+                error: OnError
+            });
         });
     });
 
@@ -71,5 +84,9 @@
     $(document).ajaxComplete(function () {
         $("#loading").hide();
     });
+
+    function OnError(XMLHttpRequest, textStatus, errorThrown) {
+        alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
+    }
 </script>
 

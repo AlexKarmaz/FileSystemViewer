@@ -35,15 +35,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return Redirect("/Drive/GetDrives/");
 			}
 
-			if (path.Last() != '/')
-			{
-				path = path + '/';
-			}
-
-			if (path.Length > 1)
-			{
-				path = path.Insert(1, ":");
-			}
+			path = PathValidation(path);
 
 			try
 			{
@@ -64,8 +56,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 			}
 			catch (UnauthorizedAccessException e)
 			{
-				//return json
-				return new HttpStatusCodeResult(HttpStatusCode.NotAcceptable);
+				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 			}
 			
 
@@ -82,40 +73,42 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 	    public ActionResult DeleteDirectory(string path = "")
 	    {
+		    List<ExplorerViewModel> explorerObjects;
+		    string newPath;
+
 			if (path == "")
 			{
 				return Redirect("/Drive/GetDrives/");
 			}
 
-			if (path.Last() != '/')
+			path = PathValidation(path);
+
+		    try
+		    {
+			    directoryService.DeleteDirectory(path);
+			    newPath = directoryService.GetParrent(path);
+
+			    var dirListModel = directoryService.GetAllDirectories(newPath).Select(d => d.ToExplorerObject());
+			    var fileListModel = fileService.GetAllFiles(newPath).Select(f => f.ToExplorerObject());
+
+			    explorerObjects = new List<ExplorerViewModel>();
+
+			    foreach (var obj in dirListModel)
+			    {
+				    explorerObjects.Add(obj);
+			    }
+
+			    foreach (var obj in fileListModel)
+			    {
+				    explorerObjects.Add(obj);
+			    }
+		    }
+			catch (UnauthorizedAccessException e)
 			{
-				path = path + '/';
+				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 			}
 
-			if (path.Length > 1)
-			{
-				path = path.Insert(1, ":");
-			}
-
-		    directoryService.DeleteDirectory(path);
-		    string newPath = directoryService.GetParrent(path);
-
-			var dirListModel = directoryService.GetAllDirectories(newPath).Select(d => d.ToExplorerObject());
-			var fileListModel = fileService.GetAllFiles(newPath).Select(f => f.ToExplorerObject());
-
-			List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
-
-			foreach (var obj in dirListModel)
-			{
-				explorerObjects.Add(obj);
-			}
-
-			foreach (var obj in fileListModel)
-			{
-				explorerObjects.Add(obj);
-			}
-
-			newPath = newPath.Remove(1, 1);
+		    newPath = newPath.Remove(1, 1);
 
 			if (newPath.Last() != '\\')
 			{
@@ -134,37 +127,39 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 		public ActionResult DeleteFile(string path = "")
 		{
+			List<ExplorerViewModel> explorerObjects;
+			string newPath;
+
 			if (path == "")
 			{
 				return Redirect("/Drive/GetDrives/");
 			}
 
-			if (path.Last() == '/')
+			path = PathValidation(path);
+
+			try
 			{
-				path = path.Remove(path.Length-1,1);
+				fileService.DeleteFile(path);
+			    newPath = fileService.GetParrent(path);
+
+				var dirListModel = directoryService.GetAllDirectories(newPath).Select(d => d.ToExplorerObject());
+				var fileListModel = fileService.GetAllFiles(newPath).Select(f => f.ToExplorerObject());
+
+				explorerObjects = new List<ExplorerViewModel>();
+
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				foreach (var obj in fileListModel)
+				{
+					explorerObjects.Add(obj);
+				}
 			}
-
-			if (path.Length > 1)
+			catch (UnauthorizedAccessException e)
 			{
-				path = path.Insert(1, ":");
-			}
-
-			fileService.DeleteFile(path);
-			string newPath = fileService.GetParrent(path);
-
-			var dirListModel = directoryService.GetAllDirectories(newPath).Select(d => d.ToExplorerObject());
-			var fileListModel = fileService.GetAllFiles(newPath).Select(f => f.ToExplorerObject());
-
-			List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
-
-			foreach (var obj in dirListModel)
-			{
-				explorerObjects.Add(obj);
-			}
-
-			foreach (var obj in fileListModel)
-			{
-				explorerObjects.Add(obj);
+				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 			}
 
 			newPath = newPath.Remove(1, 1);
@@ -185,20 +180,13 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 		public ActionResult CreateFolder(string path)
 		{
-			if (path == String.Empty)
+			if (String.IsNullOrEmpty(path))
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 
-			if (path.Last() != '/')
-			{
-				path = path + '/';
-			}
+			path = PathValidation(path);
 
-			if (path.Length > 1)
-			{
-				path = path.Insert(1, ":");
-			}
 			if (Request.IsAjaxRequest())
 				return PartialView("CreateFolder", new DirectoryViewModel(){ParentDirectoryPath = path});
 			return View("CreateFolder", new DirectoryViewModel(){ParentDirectoryPath = path});
@@ -209,6 +197,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult CreateFolder(DirectoryViewModel directoryModel)
 		{
+			List<ExplorerViewModel> explorerObjects;
 			if (directoryModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -223,22 +212,31 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 			if (ModelState.IsValid)
 			{
-				directoryService.CreateDirectory(path);
-
-				var dirListModel = directoryService.GetAllDirectories(directoryModel.ParentDirectoryPath).Select(d => d.ToExplorerObject());
-				var fileListModel = fileService.GetAllFiles(directoryModel.ParentDirectoryPath).Select(f => f.ToExplorerObject());
-
-				List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
-
-				foreach (var obj in dirListModel)
+				try
 				{
-					explorerObjects.Add(obj);
+					directoryService.CreateDirectory(path);
+
+					var dirListModel =
+						directoryService.GetAllDirectories(directoryModel.ParentDirectoryPath).Select(d => d.ToExplorerObject());
+					var fileListModel = fileService.GetAllFiles(directoryModel.ParentDirectoryPath).Select(f => f.ToExplorerObject());
+
+					explorerObjects = new List<ExplorerViewModel>();
+
+					foreach (var obj in dirListModel)
+					{
+						explorerObjects.Add(obj);
+					}
+
+					foreach (var obj in fileListModel)
+					{
+						explorerObjects.Add(obj);
+					}
+				}
+				catch (UnauthorizedAccessException e)
+				{
+					return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 				}
 
-				foreach (var obj in fileListModel)
-				{
-					explorerObjects.Add(obj);
-				}
 				path = directoryModel.ParentDirectoryPath.Remove(1, 1);
 
 				if (path.Last() != '\\')
@@ -259,19 +257,13 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 		public ActionResult CreateFile(string path)
 		{
-			if (path == String.Empty)
+			if (String.IsNullOrEmpty(path))
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			if (path.Last() != '/')
-			{
-				path = path + '/';
-			}
 
-			if (path.Length > 1)
-			{
-				path = path.Insert(1, ":");
-			}
+			path = PathValidation(path);
+			
 			if (Request.IsAjaxRequest())
 				return PartialView("CreateFile", new CreateFileViewModel() { ParentDirectoryPath = path });
 			return View("CreateFile", new CreateFileViewModel() { ParentDirectoryPath = path });
@@ -282,6 +274,8 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[Authorize(Roles = "admin")]
 	    public ActionResult CreateFile(CreateFileViewModel fileModel)
 	    {
+		    List<ExplorerViewModel> explorerObjects;
+
 			if (fileModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -304,21 +298,29 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 			if (ModelState.IsValid)
 			{
-				fileService.CreateFile(path);
-
-				var dirListModel = directoryService.GetAllDirectories(fileModel.ParentDirectoryPath).Select(d => d.ToExplorerObject());
-				var fileListModel = fileService.GetAllFiles(fileModel.ParentDirectoryPath).Select(f => f.ToExplorerObject());
-
-				List<ExplorerViewModel> explorerObjects = new List<ExplorerViewModel>();
-
-				foreach (var obj in dirListModel)
+				try
 				{
-					explorerObjects.Add(obj);
+					fileService.CreateFile(path);
+
+					var dirListModel =
+						directoryService.GetAllDirectories(fileModel.ParentDirectoryPath).Select(d => d.ToExplorerObject());
+					var fileListModel = fileService.GetAllFiles(fileModel.ParentDirectoryPath).Select(f => f.ToExplorerObject());
+
+					explorerObjects = new List<ExplorerViewModel>();
+
+					foreach (var obj in dirListModel)
+					{
+						explorerObjects.Add(obj);
+					}
+
+					foreach (var obj in fileListModel)
+					{
+						explorerObjects.Add(obj);
+					}
 				}
-
-				foreach (var obj in fileListModel)
+				catch (UnauthorizedAccessException e)
 				{
-					explorerObjects.Add(obj);
+					return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 				}
 
 				path = fileModel.ParentDirectoryPath.Remove(1, 1);
@@ -336,5 +338,21 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return PartialView(fileModel);
 			return View(fileModel);
 	    }
+
+	    private string PathValidation(string path)
+	    {
+			if (path.Last() != '/')
+			{
+				path = path + '/';
+			}
+
+			if (path.Length > 1)
+			{
+				path = path.Insert(1, ":");
+			}
+
+			return path;
+	    }
+
     }
 }

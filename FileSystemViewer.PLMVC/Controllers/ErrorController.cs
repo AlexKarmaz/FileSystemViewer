@@ -25,10 +25,5 @@ namespace FileSystemViewer.PLMVC.Controllers
 			Response.StatusCode = 500;
 			return View();
 		}
-
-	    public ActionResult NoAccessError()
-	    {
-		    return PartialView();
-	    }
     }
 }
