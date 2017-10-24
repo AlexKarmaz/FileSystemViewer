@@ -61,7 +61,7 @@
             if (result.Status == 'Exist') {
                 alert("Such file is already exists");
             } else {
-                hideFolderDialog();
+                hideFileDialog();
                 $('.item').unbind();
                 $('#explorer-table').html(result);
             }
