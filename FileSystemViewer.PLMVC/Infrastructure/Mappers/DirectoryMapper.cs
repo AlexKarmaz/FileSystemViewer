@@ -10,25 +10,6 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 {
 	public static class DirectoryMapper
 	{
-		//public static DirectoryViewModel ToMvcDirectory(this BllDirectory directory)
-		//{
-		//	return new DirectoryViewModel
-		//	{
-		//		Name = directory.Name,
-
-		//		//LastAccessTime = directory.LastAccessTime
-		//	};
-		//}
-
-		//public static BllDirectory ToBllDirectory(this DirectoryViewModel directory)
-		//{
-		//	return new BllDirectory
-		//	{
-		//		Name = directory.Name
-		//		//LastAccessTime = directory.LastAccessTime
-		//	};
-		//}
-
 		public static ExplorerViewModel ToExplorerObject(this BllDirectory directory)
 		{
 			return new ExplorerViewModel
@@ -37,6 +18,14 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 				Type = "Folder",
 				LastAccessTime = directory.LastAccessTime,
 				Size = ""
+			};
+		}
+
+		public static FolderTreeViewModel ToFolderTreeViewModel(this BllDirectory directory)
+		{
+			return new FolderTreeViewModel
+			{
+				Name = directory.Name
 			};
 		}
 	}

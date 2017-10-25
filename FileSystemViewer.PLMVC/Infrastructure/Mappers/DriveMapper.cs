@@ -5,6 +5,7 @@ using System.Web;
 using FileSystemViewer.BLL.Interface.Entities;
 using FileSystemViewer.PLMVC.Models.Directory;
 using FileSystemViewer.PLMVC.Models.Drive;
+using FileSystemViewer.PLMVC.Models;
 
 namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 {
@@ -29,6 +30,14 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 				DriveType = drive.DriveType,
 				TotalSize = drive.TotalSize,
 				TotalFreeSpace = drive.TotalFreeSpace
+			};
+		}
+
+		public static FolderTreeViewModel ToFolderTreeViewModel(this BllDrive drive)
+		{
+			return new FolderTreeViewModel
+			{
+				Name = drive.Name.Remove(1, 1).Remove(drive.Name.Length-2,1)
 			};
 		}
 	}

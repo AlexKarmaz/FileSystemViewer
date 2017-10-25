@@ -137,8 +137,6 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return Redirect("/Drive/GetDrives/");
 			}
 
-			//path = PathValidation(path);
-
 			if (path.Last() == '/')
  			{
  				path = path.Remove(path.Length-1,1);

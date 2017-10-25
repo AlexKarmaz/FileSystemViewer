@@ -42,5 +42,13 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 				LastAccessTime = file.LastAccessTime
 			};
 		}
+
+		public static FolderTreeViewModel ToFolderTreeViewModel(this BllFile file)
+		{
+			return new FolderTreeViewModel
+			{
+				Name = file.Name
+			};
+		}
 	}
 }

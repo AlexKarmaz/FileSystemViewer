@@ -1,0 +1,13 @@
+﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.FolderTreeViewModel>
+@foreach (var item in Model)
+{
+    <div class="treeItem" id="@item.Name">
+        <div class="treeChanger" id=""> > </div>
+        <div class="folderTreeIcon">
+            <img src="~/Content/images/drive.png" />
+        </div>
+        @Html.DisplayFor(modelItem => item.Name)
+    </div>
+    <div class="treeConteiner hidden" id="treeConteiner-@item.Name"></div>
+}
+

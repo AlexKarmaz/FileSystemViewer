@@ -1,6 +1,62 @@
 ﻿@if (User.Identity.IsAuthenticated)
 {
-    <div>
-       Folders tree
-    </div>
+    
+        <div class="">
+            <div class="folderTree" id="tree">
+                <div class="theComputer" id="theComputer">
+                    <div class="theComputerTreeChanger" id="theComputerTreeChanger"> > </div>
+                    <div class="folderTreeIcon">
+                        <img src="~/Content/images/monitor_16.png" />
+                    </div>
+                    <div>The computer</div>
+                </div>
+                <div class="treeConteiner hidden" id="treeConteiner-1"></div>
+            </div>
+        </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#theComputer").dblclick(function () {
+                $.ajax({
+                    url: '/Directory/GetAllDirectory/',
+                    type: "GET",
+                    success: function (result) {
+                        if (result.Status == 'NotAcceptable') {
+                            alert("You don't have access to the directory");
+                        } else {
+                            $('#main_container').html(result);
+                        }
+                    },
+                    error: OnError
+                });
+            });
+
+            $("#theComputerTreeChanger").click(function () {
+                if ($('#treeConteiner-1').hasClass('hidden').toString() == "false") {
+                    $('#treeConteiner-1').toggleClass('hidden');
+                } else {
+                    $('#treeConteiner-1').toggleClass('hidden');
+                    $('#treeConteiner-1').css('margin-left', '+15px');
+                $.ajax({
+                    url: '/FolderTree/GetDrives/',
+                    type: "GET",
+                    success: function (result) {
+                        if (result.Status == 'NotAcceptable') {
+                            alert("You don't have access to the directory");
+                        } else {
+                            $('#treeConteiner-1').html(result);
+                        }
+                    },
+                    error: OnError
+                });
+              }
+            });
+        });
+
+        function OnError(XMLHttpRequest, textStatus, errorThrown) {
+            alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
+        }
+
+    </script>
 }

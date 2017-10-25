@@ -140,6 +140,7 @@
     <Content Include="Content\images\drive.png" />
     <Content Include="Content\images\file.png" />
     <Content Include="Content\images\folder.png" />
+    <Content Include="Content\images\monitor_16.png" />
     <Content Include="Content\Loading\4.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -223,6 +224,7 @@
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Controllers\DriveController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FolderTreeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,6 +239,7 @@
     <Compile Include="Models\ExplorerViewModel.cs" />
     <Compile Include="Models\File\CreateFileViewModel.cs" />
     <Compile Include="Models\File\FileViewModel.cs" />
+    <Compile Include="Models\FolderTreeViewModel.cs" />
     <Compile Include="Models\User\LogViewModel.cs" />
     <Compile Include="Models\User\RegisterViewModel.cs" />
     <Compile Include="Models\User\UserViewModel.cs" />
@@ -269,6 +272,8 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
+    <Content Include="Views\FolderTree\GetDrivesTree.cshtml" />
+    <Content Include="Views\FolderTree\GetAllDirectoryTree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

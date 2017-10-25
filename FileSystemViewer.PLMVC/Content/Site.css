@@ -151,4 +151,56 @@ textarea {
 .custom-jumbotron {
     padding-bottom: 0px;
     padding-top: 0px;
+    background-color: #eee
+}
+
+.treeItem:hover {
+    background-color: lightskyblue;
+}
+
+.treeItem {
+    display: flex;
+}
+
+.theComputer:hover {
+     background-color: lightskyblue;
+}
+
+.theComputer {
+    display: flex;
+}
+
+.positionFixed {
+    position: fixed;
+}
+.folderTree {
+     margin: 20px;
+}
+
+.treeItem {
+    display: flex;
+}
+
+.treeChanger:hover {
+     background-color: orange;
+}
+
+.treeChanger {
+    width: 15px;
+}
+
+.theComputerTreeChanger:hover {
+     background-color: orange;
+}
+
+.theComputerTreeChanger {
+     width: 15px;
+}
+.folderTreeIcon img{
+    height: 16px;
+    margin-right: 5px;
+}
+
+.hidden {
+    display: none;
 }
