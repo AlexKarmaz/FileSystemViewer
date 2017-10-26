@@ -25,6 +25,7 @@
                         if (result.Status == 'NotAcceptable') {
                             alert("You don't have access to the directory");
                         } else {
+                            $('.item').unbind();
                             $('#main_container').html(result);
                         }
                     },
@@ -34,6 +35,9 @@
 
             $("#theComputerTreeChanger").click(function () {
                 if ($('#treeConteiner-1').hasClass('hidden').toString() == "false") {
+                    //$('#treeConteiner-1').find('.treeDriveItem').unbind();
+                    //$('#treeConteiner-1').find('.treeDriveChanger').unbind();
+                    $('#treeConteiner-1').empty();
                     $('#treeConteiner-1').toggleClass('hidden');
                 } else {
                     $('#treeConteiner-1').toggleClass('hidden');

@@ -47,7 +47,8 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 		{
 			return new FolderTreeViewModel
 			{
-				Name = file.Name
+				Name = file.Name,
+				Type = "File"
 			};
 		}
 	}

@@ -32,6 +32,9 @@ namespace FileSystemViewer.PLMVC
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap-min").Include(
 					  "~/Scripts/bootstrap.min.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
+					  "~/Scripts/underscore-awesomer.min.js"));
 		}
 	}
 }

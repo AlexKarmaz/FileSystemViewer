@@ -25,7 +25,8 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 		{
 			return new FolderTreeViewModel
 			{
-				Name = directory.Name
+				Name = directory.Name,
+				Type = "Folder"
 			};
 		}
 	}

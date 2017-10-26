@@ -1,40 +1,45 @@
 ﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.FolderTreeViewModel>
 @foreach (var item in Model)
 {
-    <div class="treeItem" id="treeItem-@item.Name">
-        <div class="treeChanger" id="@item.Name"> > </div>
+    <div class="treeDriveItem" id="treeItem-@item.Name">
+        <div class="treeDriveChanger" id="@item.Name"> > </div>
         <div class="folderTreeIcon">
             <img src="~/Content/images/drive.png" />
         </div>
         @Html.DisplayFor(modelItem => item.Name)
     </div>
     <div class="treeConteiner hidden" id="treeConteiner-@item.Name"></div>
-    <script>
+}
+
+<script>
     $(document).ready(function () {
-        $(".treeItem").dblclick(function () {
+        $(".treeDriveItem").dblclick(function () {
             var path = "@ViewBag.LastPath";
             var index = this.id.indexOf("-") + 1;
             var newPath = path + this.id.substr(index, this.id.length) + "\\";
             var url = "/Directory/GetAllDirectory/" + newPath;
             url = encodeURI(url);
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function (result) {
-                        if (result.Status == 'NotAcceptable') {
-                            alert("You don't have access to the directory");
-                        } else {
-                            $('#main_container').html(result);
-                        }
-                    },
-                    error: OnError
-                });
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    if (result.Status == 'NotAcceptable') {
+                        alert("You don't have access to the directory");
+                    } else {
+                        $('.item').unbind();
+                        $('#main_container').html(result);
+                    }
+                },
+                error: OnError
+            });
         });
 
-        $('#@item.Name').click(function () {
+        $('.treeDriveChanger').click(function () {
             var name = this.id.toString();
-            debugger;
             if ($('#treeConteiner-' + name).hasClass('hidden').toString() == "false") {
+                //$('#treeConteiner-' + name).find('.treeChanger').unbind();
+                //$('#treeConteiner-' + name).find('.treeItem').unbind();
+                $('#treeConteiner-' + name).empty();
                 $('#treeConteiner-' + name).toggleClass('hidden');
             } else {
                 $('#treeConteiner-' + name).toggleClass('hidden');
@@ -67,5 +72,4 @@
     function OnError(XMLHttpRequest, textStatus, errorThrown) {
         alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
     };
-    </script>
-}
+</script>

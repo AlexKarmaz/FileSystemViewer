@@ -174,7 +174,9 @@ textarea {
     position: fixed;
 }
 .folderTree {
-     margin: 20px;
+    max-height: 850px;
+    overflow: auto;
+    margin: 20px;
 }
 
 .treeItem {
@@ -187,6 +189,22 @@ textarea {
 
 .treeChanger {
     width: 15px;
+}
+
+.treeDriveItem {
+    display: flex;
+}
+
+.treeDriveItem:hover {
+    background-color: lightskyblue;
+}
+
+.treeDriveChanger {
+     width: 15px;
+}
+
+.treeDriveChanger:hover {
+    background-color: orange;
 }
 
 .theComputerTreeChanger:hover {
