@@ -37,8 +37,6 @@
         $('.treeDriveChanger').click(function () {
             var name = this.id.toString();
             if ($('#treeConteiner-' + name).hasClass('hidden').toString() == "false") {
-                //$('#treeConteiner-' + name).find('.treeChanger').unbind();
-                //$('#treeConteiner-' + name).find('.treeItem').unbind();
                 $('#treeConteiner-' + name).empty();
                 $('#treeConteiner-' + name).toggleClass('hidden');
             } else {

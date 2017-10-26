@@ -129,7 +129,7 @@ textarea {
 
 .pathPlace {
      border: 4px double black;
-     width: -webkit-fill-available;
+     width: 100%;
 }
 
 .item:hover {
