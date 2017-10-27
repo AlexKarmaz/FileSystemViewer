@@ -29,5 +29,15 @@ namespace FileSystemViewer.PLMVC.Infrastructure.Mappers
 				Type = "Folder"
 			};
 		}
+
+		public static ExplorerSearchViewModel ToExplorerSearchObject(this BllDirectory directory)
+		{
+			return new ExplorerSearchViewModel
+			{
+				Name = directory.Name,
+				Type = "Folder",
+				Path = directory.Path.Remove(1, 1)
+			};
+		}
 	}
 }

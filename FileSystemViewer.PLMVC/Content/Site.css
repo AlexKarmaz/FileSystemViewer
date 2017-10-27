@@ -76,11 +76,11 @@ textarea {
 }
 
 .search-sumbl{
-    color: white;
+    color: black;
 }
 
 .search{
-    margin-top: 19px;
+    margin-top: 17px;
     display: -webkit-box;
 }
 
@@ -225,4 +225,9 @@ textarea {
 
 .tableHederitem:hover {
     background-color: lightskyblue;
+}
+
+.editBar {
+    display: flex;
+    justify-content: space-between;
 }

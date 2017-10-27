@@ -238,6 +238,7 @@
     <Compile Include="Infrastructure\Mappers\UserMapper.cs" />
     <Compile Include="Models\Directory\DirectoryViewModel.cs" />
     <Compile Include="Models\Drive\DriveViewModel.cs" />
+    <Compile Include="Models\ExplorerSearchViewModel.cs" />
     <Compile Include="Models\ExplorerViewModel.cs" />
     <Compile Include="Models\File\CreateFileViewModel.cs" />
     <Compile Include="Models\File\FileViewModel.cs" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\FolderTree\GetDrivesTree.cshtml" />
     <Content Include="Views\FolderTree\GetAllDirectoryTree.cshtml" />
+    <Content Include="Views\Directory\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

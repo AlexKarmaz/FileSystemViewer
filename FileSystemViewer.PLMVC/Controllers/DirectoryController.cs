@@ -5,6 +5,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
+using FileSystemViewer.BLL.Interface.Entities;
 using FileSystemViewer.BLL.Interface.Interfaces;
 using FileSystemViewer.PLMVC.Infrastructure.Mappers;
 using FileSystemViewer.PLMVC.Models;
@@ -432,6 +433,62 @@ namespace FileSystemViewer.PLMVC.Controllers
 			if (Request.IsAjaxRequest())
 				return PartialView("GetAllDirectory", explorerObjects);
 			return View("GetAllDirectory", explorerObjects);
+		}
+
+		[HttpGet]
+		public ActionResult Search( string searchString, string path = "")
+		{
+
+			if (String.IsNullOrEmpty(searchString))
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			List<ExplorerSearchViewModel> explorerObjects;
+
+			if (path == "")
+			{
+				return Redirect("/Drive/GetDrives/");
+			}
+
+			path = PathValidation(path);
+
+			try
+			{
+				 IList<BllDirectory> directories = new List<BllDirectory>();
+
+				 directoryService.SearchDirectories(path, searchString, directories);
+
+				 var dirListModel = directories.Select(d => d.ToExplorerSearchObject());
+
+			//	var fileListModel = fileService.GetAllFiles(path).Select(f => f.ToExplorerObject());
+
+
+				 explorerObjects = new List<ExplorerSearchViewModel>();
+
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				//foreach (var obj in fileListModel)
+				//{
+				//	explorerObjects.Add(obj);
+				//}
+			}
+			catch (UnauthorizedAccessException e)
+			{
+				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
+			}
+
+
+			path = path.Remove(1, 1);
+			path = path.Replace("/", "\\\\");
+
+			ViewBag.LastPath = path;
+			if (Request.IsAjaxRequest())
+				return PartialView("Search", explorerObjects);
+			return View("Search", explorerObjects);
 		}
 
 	    private string PathValidation(string path)

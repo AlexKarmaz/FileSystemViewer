@@ -10,5 +10,6 @@ namespace FileSystemViewer.BLL.Interface.Entities
 	{
 		public string Name { get; set; }
 		public DateTime LastAccessTime { get; set; }
+		public string Path { get; set; }
 	}
 }

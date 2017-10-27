@@ -1,27 +1,28 @@
-﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerViewModel>
+﻿
+@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerSearchViewModel>
 
 <div class="editBar">
-@if (User.IsInRole("admin"))
-{
-    <div id="modal">
-        @Html.Action("CreateFolder", "Directory", new {path = @ViewBag.LastPath})
-        @Html.Action("CreateFile", "Directory", new {path = @ViewBag.LastPath})
-    </div>
-}
-@using (Ajax.BeginForm("Search", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET" }))
-{
-    <div class="search">
-        <input type="text" name="searchString" placeholder="Search..">
-        <button type="submit" class="searchButton">
-            <i class="glyphicon glyphicon-search search-sumbl"></i>
-        </button>
-    </div>
-}
+    @if (User.IsInRole("admin"))
+    {
+        <div id="modal">
+            @Html.Action("CreateFolder", "Directory", new { path = @ViewBag.LastPath })
+            @Html.Action("CreateFile", "Directory", new { path = @ViewBag.LastPath })
+        </div>
+    }
+    @using (Ajax.BeginForm("Search", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", LoadingElementId = "loading", HttpMethod = "GET" }))
+    {
+        <div class="search">
+            <input type="text" name="searchString" placeholder="Search..">
+            <button type="submit" class="searchButton">
+                <i class="glyphicon glyphicon-search search-sumbl"></i>
+            </button>
+        </div>
+    }
 </div>
 
 
 <div class="url-row">
-    <img src="~/Content/images/back.png" id="back-image"/>
+    <img src="~/Content/images/back.png" id="back-image" />
     <div class="pathPlace">The computer\\@ViewBag.LastPath</div>
 </div>
 
@@ -29,18 +30,14 @@
     <tr>
         <th></th>
         <th class="tableHederitem">
-            @Ajax.ActionLink("Name", "GetAllDirectoryByName", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET"})
+            @Ajax.ActionLink("Name", "GetAllDirectoryByName", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET" })
         </th>
         <th class="tableHederitem">
             @Ajax.ActionLink("Type", "GetAllDirectoryByType", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET" })
         </th>
         <th style="color: #337ab7">
-            @Html.DisplayNameFor(model => model.LastAccessTime)
+            Path
         </th>
-        <th style ="color: #337ab7">
-            @Html.DisplayNameFor(model => model.Size)
-        </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -57,23 +54,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastAccessTime)
+                <td id="path">
+                    @Html.DisplayFor(modelItem => item.Path)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @if (User.IsInRole("admin"))
-                    {
-                        @Ajax.ActionLink("Delete", "DeleteDirectory", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\" }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this folder?" })
-                    }
-                </td>
+               
             </tr>
         }
         else
         {
-            <tr class="item" id="item-@item.Name">
+            @*<tr class="item" id="item-@item.Name">
                 <td>
                     <img src="~/Content/images/file.png" />
                 </td>
@@ -95,7 +84,7 @@
                         @Ajax.ActionLink("Delete", "DeleteFile", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\" }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this file?" })
                     }
                 </td>
-            </tr>
+            </tr>*@
         }
     }
 
@@ -103,10 +92,7 @@
 <script>
     $(document).ready(function () {
         $(".folder").dblclick(function () {
-            var path = $(".pathPlace").text();
-            path = path.substr(13, path.length);
-            var index = this.id.indexOf("-") + 1;
-            var newPath = path + this.id.substr(index, this.id.length);
+            var newPath = $(this).find('#path').text().trim();
             var url = "/Directory/GetAllDirectory/" + newPath;
             url = encodeURI(url);
             $.ajax({
@@ -156,7 +142,6 @@
     });
 
     function OnError(XMLHttpRequest, textStatus, errorThrown) {
-        debugger;
         alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
     }
 </script>
