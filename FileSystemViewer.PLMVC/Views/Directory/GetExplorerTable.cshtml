@@ -3,16 +3,16 @@
 <table class="table" id="explorer-table ">
     <tr>
         <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
+        <th class="tableHederitem">
+            @Ajax.ActionLink("Name", "GetAllDirectoryByName", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET" })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
+        <th class="tableHederitem">
+            @Ajax.ActionLink("Type", "GetAllDirectoryByType", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET" })
         </th>
-        <th>
+        <th style="color: #337ab7">
             @Html.DisplayNameFor(model => model.LastAccessTime)
         </th>
-        <th>
+        <th style="color: #337ab7">
             @Html.DisplayNameFor(model => model.Size)
         </th>
         <th></th>

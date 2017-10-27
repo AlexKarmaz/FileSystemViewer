@@ -342,6 +342,98 @@ namespace FileSystemViewer.PLMVC.Controllers
 			return View(fileModel);
 	    }
 
+		[HttpGet]
+		public ActionResult GetAllDirectoryByName(string path = "")
+		{
+			List<ExplorerViewModel> explorerObjects;
+
+			if (path == "")
+			{
+				return Redirect("/Drive/GetDrives/");
+			}
+
+			path = PathValidation(path);
+
+			try
+			{
+				var dirListModel = directoryService.GetAllDirectories(path).Select(d => d.ToExplorerObject());
+				var fileListModel = fileService.GetAllFiles(path).Select(f => f.ToExplorerObject());
+
+
+				explorerObjects = new List<ExplorerViewModel>();
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				foreach (var obj in fileListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				explorerObjects.Sort((x,y) => x.Name.CompareTo(y.Name));
+			}
+			catch (UnauthorizedAccessException e)
+			{
+				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
+			}
+
+
+			path = path.Remove(1, 1);
+			path = path.Replace("/", "\\\\");
+
+			ViewBag.LastPath = path;
+			if (Request.IsAjaxRequest())
+				return PartialView("GetAllDirectory", explorerObjects);
+			return View("GetAllDirectory", explorerObjects);
+		}
+
+		[HttpGet]
+		public ActionResult GetAllDirectoryByType(string path = "")
+		{
+			List<ExplorerViewModel> explorerObjects;
+
+			if (path == "")
+			{
+				return Redirect("/Drive/GetDrives/");
+			}
+
+			path = PathValidation(path);
+
+			try
+			{
+				var dirListModel = directoryService.GetAllDirectories(path).Select(d => d.ToExplorerObject());
+				var fileListModel = fileService.GetAllFiles(path).Select(f => f.ToExplorerObject());
+
+
+				explorerObjects = new List<ExplorerViewModel>();
+				foreach (var obj in dirListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				foreach (var obj in fileListModel)
+				{
+					explorerObjects.Add(obj);
+				}
+
+				explorerObjects.Sort((x, y) => y.Type.CompareTo(x.Type));
+			}
+			catch (UnauthorizedAccessException e)
+			{
+				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
+			}
+
+
+			path = path.Remove(1, 1);
+			path = path.Replace("/", "\\\\");
+
+			ViewBag.LastPath = path;
+			if (Request.IsAjaxRequest())
+				return PartialView("GetAllDirectory", explorerObjects);
+			return View("GetAllDirectory", explorerObjects);
+		}
+
 	    private string PathValidation(string path)
 	    {
 			if (path.Last() != '/')

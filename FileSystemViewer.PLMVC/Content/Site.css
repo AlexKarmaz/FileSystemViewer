@@ -222,3 +222,7 @@ textarea {
 .hidden {
     display: none;
 }
+
+.tableHederitem:hover {
+    background-color: lightskyblue;
+}
