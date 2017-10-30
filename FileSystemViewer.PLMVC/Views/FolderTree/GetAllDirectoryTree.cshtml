@@ -7,25 +7,32 @@
     var hash = md5.ComputeHash(Encoding.Default.GetBytes(item.Name));
     new Guid(hash);
     item.Id = (new Guid(hash)).ToString();
-    <div class="treeItem" id="treeItem-@item.Id">
-        <div class="treeChanger" id="treeChanger-@item.Id"> > </div>
-        <div class="folderTreeIcon">
-            @if (item.Type == "Folder")
-            {
-                <img src="~/Content/images/folder.png" />
-            }
-            else
-            {
-                <img src="~/Content/images/file.png" />
-            }
+
+    if (item.Type == "Folder")
+    {
+        <div class="treeItem" id="treeItemFolder-@item.Id">
+            <div class="treeChanger" id="treeChangerFolder-@item.Id"> > </div>
+            <div class="folderTreeIcon">
+                 <img src="~/Content/images/folder.png"/>
+            </div>
+            @Html.DisplayFor(modelItem => item.Name)
         </div>
-        @Html.DisplayFor(modelItem => item.Name)
-    </div>
-    <div class="treeConteiner hidden" id="treeConteiner-@item.Id"></div>
+        <div class="treeConteiner hidden" id="treeConteiner-@item.Id"></div>
+    }
+    else
+    {
+        <div class="treeItem" id="treeItem-@item.Id">
+            <div>   </div>
+            <div class="folderTreeIcon">
+               <img src="~/Content/images/file.png" />
+            </div>
+            @Html.DisplayFor(modelItem => item.Name)
+        </div>
+    }
 
     <script>
     $(document).ready(function () {
-        $('#treeItem-@item.Id').dblclick(function () {
+        $('#treeItemFolder-@item.Id').dblclick(function () {
             var name = "@item.Name";
             var path = "@ViewBag.LastPath";
             var newPath = path + name + "\\";
@@ -46,7 +53,7 @@
             });
         });
 
-        $('#treeChanger-@item.Id').click(function () {
+        $('#treeChangerFolder-@item.Id').click(function () {
             var name = "@item.Name";
             if ($('#treeConteiner-@item.Id').hasClass('hidden').toString() == "false") {
                 $('#treeConteiner-@item.Id').empty();
