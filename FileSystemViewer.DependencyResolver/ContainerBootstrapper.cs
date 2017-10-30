@@ -30,6 +30,7 @@ namespace FileSystemViewer.DependencyResolverModule
 			container.RegisterType<IFileService, FileService>(new HierarchicalLifetimeManager());
 			container.RegisterType<IDirectoryService, DirectoryService>(new HierarchicalLifetimeManager());
 			container.RegisterType<IDriveService, DriveService>(new HierarchicalLifetimeManager());
+			container.RegisterType<ISearchService, SearchService>(new HierarchicalLifetimeManager());
 		}
     }
 }

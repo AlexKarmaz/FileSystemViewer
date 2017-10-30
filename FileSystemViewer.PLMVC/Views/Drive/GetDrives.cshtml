@@ -59,8 +59,6 @@
             var index = this.id.indexOf("-") + 1;
             var url = "/Directory/GetAllDirectory/" + path + this.id.substr(index, this.id.length);
             url = encodeURI(url);
-           // $('.item').unbind();
-           // $('#main_container').load(url);
             $.ajax({
                 url: url,
                 type: "GET",

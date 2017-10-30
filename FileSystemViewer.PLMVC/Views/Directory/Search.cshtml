@@ -29,11 +29,11 @@
 <table class="table" id="explorer-table">
     <tr>
         <th></th>
-        <th class="tableHederitem">
-            @Ajax.ActionLink("Name", "GetAllDirectoryByName", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET" })
+        <th style="color: #337ab7">
+            Name
         </th>
-        <th class="tableHederitem">
-            @Ajax.ActionLink("Type", "GetAllDirectoryByType", "Directory", new { path = @ViewBag.LastPath }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET" })
+        <th style="color: #337ab7">
+            Type
         </th>
         <th style="color: #337ab7">
             Path
@@ -55,14 +55,13 @@
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
                 <td id="path">
-                    @Html.DisplayFor(modelItem => item.Path)
+                    @item.Path
                 </td>
-               
             </tr>
         }
         else
         {
-            @*<tr class="item" id="item-@item.Name">
+            <tr class="item" id="item-@item.Name">
                 <td>
                     <img src="~/Content/images/file.png" />
                 </td>
@@ -72,19 +71,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastAccessTime)
+                <td id="path">
+                    @Html.DisplayFor(modelItem => item.Path)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @if (User.IsInRole("admin"))
-                    {
-                        @Ajax.ActionLink("Delete", "DeleteFile", "Directory", new { path = @ViewBag.LastPath + item.Name + "\\" }, new AjaxOptions { UpdateTargetId = "main_container", OnFailure = "OnError", LoadingElementId = "loading", HttpMethod = "GET", Confirm = "Do you really want to delete this file?" })
-                    }
-                </td>
-            </tr>*@
+            </tr>
         }
     }
 

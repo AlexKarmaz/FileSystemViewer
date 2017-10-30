@@ -151,7 +151,8 @@ textarea {
 .custom-jumbotron {
     padding-bottom: 0px;
     padding-top: 0px;
-    background-color: #eee
+    background-color: #eee;
+    display: table;
 }
 
 .treeItem:hover {

@@ -235,6 +235,7 @@
     <Compile Include="Infrastructure\Mappers\DriveMapper.cs" />
     <Compile Include="Infrastructure\Mappers\FileMapper.cs" />
     <Compile Include="Infrastructure\Mappers\RoleMapper.cs" />
+    <Compile Include="Infrastructure\Mappers\SearchMapper.cs" />
     <Compile Include="Infrastructure\Mappers\UserMapper.cs" />
     <Compile Include="Models\Directory\DirectoryViewModel.cs" />
     <Compile Include="Models\Drive\DriveViewModel.cs" />

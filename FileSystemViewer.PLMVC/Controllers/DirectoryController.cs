@@ -20,11 +20,13 @@ namespace FileSystemViewer.PLMVC.Controllers
         
 		private readonly IDirectoryService directoryService;
 		private readonly IFileService fileService;
+	    private readonly ISearchService searchService;
 
-		public DirectoryController(IDirectoryService directoryService, IFileService fileService)
+		public DirectoryController(IDirectoryService directoryService, IFileService fileService, ISearchService searchService)
 		{
 			this.directoryService = directoryService;
 			this.fileService = fileService;
+			this.searchService = searchService;
 		}
 
 		[HttpGet]
@@ -455,26 +457,18 @@ namespace FileSystemViewer.PLMVC.Controllers
 
 			try
 			{
-				 IList<BllDirectory> directories = new List<BllDirectory>();
+				IList<BllSearchResult> results = new List<BllSearchResult>();
 
-				 directoryService.SearchDirectories(path, searchString, directories);
+				searchService.SearchDirectories(path, searchString, results);
 
-				 var dirListModel = directories.Select(d => d.ToExplorerSearchObject());
-
-			//	var fileListModel = fileService.GetAllFiles(path).Select(f => f.ToExplorerObject());
-
+				var resultListModel = results.Select(d => d.ToExplorerSearchObject()).OrderByDescending(d => d.Type);
 
 				 explorerObjects = new List<ExplorerSearchViewModel>();
 
-				foreach (var obj in dirListModel)
+				foreach (var obj in resultListModel)
 				{
 					explorerObjects.Add(obj);
 				}
-
-				//foreach (var obj in fileListModel)
-				//{
-				//	explorerObjects.Add(obj);
-				//}
 			}
 			catch (UnauthorizedAccessException e)
 			{
