@@ -93,6 +93,7 @@ QUnit.test("getPath() method must return correct string", function (assert) {
 });
 
 QUnit.test("hangDblClick() method must hang dblclick and has correct respond", function (assert) {	
+	debugger;
 	var callback = sinon.spy();
 //	server.respondWith("GET", "/Directory/GetAllDirectory/C",
   //        [200, { "Content-Type": "application/json" },
@@ -118,10 +119,10 @@ QUnit.test("hangDblClick() method must hang dblclick and has correct respond", f
 
 
 //QUnit.test("onSuccess() method must to rewrite main container ", function (assert) {	
-	//var expectedResult = '<div> <div class="pathPlace">The computer\\D</div> </div>  <div>Good work</div>';
+//	var expectedResult = '<div> <div class="pathPlace">The computer\\D</div> </div>  <div>Good work</div>';
 	//var = GetDrivesHtml = ' <div id="main_container"><div> <div class="pathPlace">The computer\\D</div> </div>  <div>Good work</div> </div>';
 //	recentDriveMgr.onSuccess(expectedResult);
-  //  assert.equal(mainContainer, GetDrivesHtml, "Recent Items template must be GetDrivesHtml");
+ //   assert.equal(mainContainer, GetDrivesHtml, "Recent Items template must be GetDrivesHtml");
 //});
 
 
