@@ -17,7 +17,7 @@
                 InsertionMode = InsertionMode.Replace,
                 LoadingElementId = "loading",
                 HttpMethod = "POST",
-                OnSuccess = "OnSuccess",
+                OnSuccess = "OnSuccessFolder",
                 OnFailure = "OnError"
             }))
             {
@@ -41,24 +41,5 @@
         </div>
     </div>
 </div>
-<script>
-    $("#modal-button-folder").click(function () {
-            $("#modDialog-folder").modal("show");
-    });
 
-
-        function hideFolderDialog() {
-            $("#modDialog-folder").modal("hide");
-        };
-
-        function OnSuccess(result) {
-            if (result.Status == 'Exist') {
-                alert("Such folder is already exists");
-            } else {
-                hideFolderDialog();
-                $('.item').unbind();
-                $('#explorer-table').html(result);
-            }
-        };
-   
-</script>
+<script src="~/Scripts/CustomScripts/CreateFolderModalWindow.js"></script>

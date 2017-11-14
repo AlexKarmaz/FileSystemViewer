@@ -1,0 +1,20 @@
+(function(window) {
+
+%CONTENT%
+
+var config = createQUnitConfig(window.__karma__, {
+  autostart: false
+});
+
+for (var key in config) {
+  window.QUnit.config[key] = config[key];
+}
+
+if (window.removeEventListener) {
+  window.removeEventListener('load', window.QUnit.load, false);
+} else if (window.detachEvent) {
+  window.detachEvent('onload', window.QUnit.load);
+}
+
+window.__karma__.start = createQUnitStartFn(window.__karma__);
+})(typeof window !== 'undefined' ? window : global);

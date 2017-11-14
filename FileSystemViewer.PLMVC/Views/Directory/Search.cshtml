@@ -80,7 +80,7 @@
 
 </table>
 <script>
-    $(document).ready(function () {
+    @*$(document).ready(function () {
         $(".folder").dblclick(function () {
             var newPath = $(this).find('#path').text().trim();
             var url = "/Directory/GetAllDirectory/" + newPath;
@@ -121,17 +121,7 @@
                 error: OnError
             });
         });
-    });
-
-    $(document).ajaxStart(function () {
-        $("#loading").show();
-    });
-
-    $(document).ajaxComplete(function () {
-        $("#loading").hide();
-    });
-
-    function OnError(XMLHttpRequest, textStatus, errorThrown) {
-        alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
-    }
+    });*@
 </script>
+<script src="~/Scripts/CustomScripts/AjaxConfiguration.js"></script>
+<script src="~/Scripts/CustomScripts/SearchScripts.js"></script>

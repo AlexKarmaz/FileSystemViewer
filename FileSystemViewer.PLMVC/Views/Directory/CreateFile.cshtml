@@ -17,7 +17,7 @@
                 InsertionMode = InsertionMode.Replace,
                 LoadingElementId = "loading",
                 HttpMethod = "POST",
-                OnSuccess = "OnSuccess",
+                OnSuccess = "OnSuccessFile",
                 OnFailure = "OnError"
             }))
             {
@@ -46,25 +46,5 @@
         </div>
     </div>
 </div>
-<script>
-    $("#modal-button-file").click(function () {
-            $("#modDialog-file").modal("show");
-        });
 
-
-        function hideFileDialog() {
-            $("#modDialog-file").modal("hide");
-        };
-
-
-        function OnSuccess(result) {
-            if (result.Status == 'Exist') {
-                alert("Such file is already exists");
-            } else {
-                hideFileDialog();
-                $('.item').unbind();
-                $('#explorer-table').html(result);
-            }
-
-        };
-</script>
+<script src="~/Scripts/CustomScripts/CreateFileModalWindow.js"></script>

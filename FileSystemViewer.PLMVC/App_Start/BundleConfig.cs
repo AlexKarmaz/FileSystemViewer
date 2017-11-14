@@ -27,7 +27,8 @@ namespace FileSystemViewer.PLMVC
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
-					  "~/Content/Site.css"
+					  "~/Content/Site.css",
+					  "~/Content/SASS/Styles.css"
 					   ));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap-min").Include(

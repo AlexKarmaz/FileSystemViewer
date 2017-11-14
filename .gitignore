@@ -1,0 +1,8 @@
+# Node js
+FileSystemViewer.PLMVC/node_modules/*
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

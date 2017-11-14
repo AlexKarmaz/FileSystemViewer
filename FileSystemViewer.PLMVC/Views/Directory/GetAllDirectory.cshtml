@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerViewModel>
+﻿@using System.Web.Optimization
+@model IEnumerable<FileSystemViewer.PLMVC.Models.ExplorerViewModel>
+           
 
 <div class="editBar">
 @if (User.IsInRole("admin"))
@@ -19,6 +21,9 @@
 }
 </div>
 
+<div class="hidden" id="lastPath">
+    @ViewBag.LastPath
+</div>
 
 <div class="url-row">
     <img src="~/Content/images/back.png" id="back-image"/>
@@ -100,63 +105,9 @@
     }
 
 </table>
-<script>
-    $(document).ready(function () {
-        $(".folder").dblclick(function () {
-            var path = $(".pathPlace").text();
-            path = path.substr(13, path.length);
-            var index = this.id.indexOf("-") + 1;
-            var newPath = path + this.id.substr(index, this.id.length);
-            var url = "/Directory/GetAllDirectory/" + newPath;
-            url = encodeURI(url);
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (result) {
-                    if (result.Status == 'NotAcceptable') {
-                        alert("You don't have access to the directory");
-                    } else {
-                        $('.item').unbind();
-                        $('#main_container').html(result);
-                    }
-                },
-                error: OnError
-            });
-        });
 
-        $("#back-image").click(function () {
-            var path = "@ViewBag.LastPath";
-            path = path.substr(0, path.length - 2);
-            var lastPathIndex = path.lastIndexOf("\\");
-            path = path.substr(0, lastPathIndex);
-            var url = "/Directory/GetAllDirectory/" + path;
-            url = encodeURI(url);
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (result) {
-                    if (result.Status == 'NotAcceptable') {
-                        alert("You don't have access to the directory");
-                    } else {
-                        $('.item').unbind();
-                        $('#main_container').html(result);
-                    }
-                },
-                error: OnError
-            });
-        });
-    });
+@Scripts.Render("~/Scripts/CustomScripts/AllDirectoryScripts.js")
+@Scripts.Render("~/Scripts/CustomScripts/AjaxConfiguration.js")
 
-    $(document).ajaxStart(function () {
-        $("#loading").show();
-    });
 
-    $(document).ajaxComplete(function () {
-        $("#loading").hide();
-    });
 
-    function OnError(XMLHttpRequest, textStatus, errorThrown) {
-        debugger;
-        alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
-    }
-</script>

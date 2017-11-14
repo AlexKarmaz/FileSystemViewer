@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <NuGetPackageImportStamp>ea4684e9</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -194,10 +195,104 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\bootstrap\mixins\_text-overflow.scss" />
+    <Content Include="Content\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\bootstrap\mixins\_tab-focus.scss" />
+    <Content Include="Content\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\bootstrap\mixins\_responsive-visibility.scss" />
+    <Content Include="Content\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Content\bootstrap\mixins\_reset-filter.scss" />
+    <Content Include="Content\bootstrap\mixins\_progress-bar.scss" />
+    <Content Include="Content\bootstrap\mixins\_panels.scss" />
+    <Content Include="Content\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\bootstrap\mixins\_opacity.scss" />
+    <Content Include="Content\bootstrap\mixins\_nav-vertical-align.scss" />
+    <Content Include="Content\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\bootstrap\mixins\_labels.scss" />
+    <Content Include="Content\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\bootstrap\mixins\_hide-text.scss" />
+    <Content Include="Content\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\bootstrap\mixins\_center-block.scss" />
+    <Content Include="Content\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\bootstrap\mixins\_alerts.scss" />
+    <Content Include="Content\bootstrap\_wells.scss" />
+    <Content Include="Content\bootstrap\_variables.scss" />
+    <Content Include="Content\bootstrap\_utilities.scss" />
+    <Content Include="Content\bootstrap\_type.scss" />
+    <Content Include="Content\bootstrap\_tooltip.scss" />
+    <Content Include="Content\bootstrap\_thumbnails.scss" />
+    <Content Include="Content\bootstrap\_theme.scss" />
+    <Content Include="Content\bootstrap\_tables.scss" />
+    <Content Include="Content\bootstrap\_scaffolding.scss" />
+    <Content Include="Content\bootstrap\_responsive-utilities.scss" />
+    <Content Include="Content\bootstrap\_responsive-embed.scss" />
+    <Content Include="Content\bootstrap\_progress-bars.scss" />
+    <Content Include="Content\bootstrap\_print.scss" />
+    <Content Include="Content\bootstrap\_popovers.scss" />
+    <Content Include="Content\bootstrap\_panels.scss" />
+    <Content Include="Content\bootstrap\_pagination.scss" />
+    <Content Include="Content\bootstrap\_pager.scss" />
+    <Content Include="Content\bootstrap\_normalize.scss" />
+    <Content Include="Content\bootstrap\_navs.scss" />
+    <Content Include="Content\bootstrap\_navbar.scss" />
+    <Content Include="Content\bootstrap\_modals.scss" />
+    <Content Include="Content\bootstrap\_mixins.scss" />
+    <Content Include="Content\bootstrap\_media.scss" />
+    <Content Include="Content\bootstrap\_list-group.scss" />
+    <Content Include="Content\bootstrap\_labels.scss" />
+    <Content Include="Content\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\bootstrap\_input-groups.scss" />
+    <Content Include="Content\bootstrap\_grid.scss" />
+    <Content Include="Content\bootstrap\_glyphicons.scss" />
+    <Content Include="Content\bootstrap\_forms.scss" />
+    <Content Include="Content\bootstrap\_dropdowns.scss" />
+    <Content Include="Content\bootstrap\_component-animations.scss" />
+    <Content Include="Content\bootstrap\_code.scss" />
+    <Content Include="Content\bootstrap\_close.scss" />
+    <Content Include="Content\bootstrap\_carousel.scss" />
+    <Content Include="Content\bootstrap\_buttons.scss" />
+    <Content Include="Content\bootstrap\_button-groups.scss" />
+    <Content Include="Content\bootstrap\_breadcrumbs.scss" />
+    <Content Include="Content\bootstrap\_badges.scss" />
+    <Content Include="Content\bootstrap\_alerts.scss" />
+    <None Include="SASS\Styles.scss" />
+    <Content Include="gulpfile.js" />
+    <Content Include="package.json" />
+    <Content Include="Content\_bootstrap.scss" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\CustomScripts\AjaxConfiguration.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\customJS.js" />
+    <Content Include="Scripts\bootstrap\affix.js" />
+    <Content Include="Scripts\bootstrap\alert.js" />
+    <Content Include="Scripts\bootstrap\button.js" />
+    <Content Include="Scripts\bootstrap\carousel.js" />
+    <Content Include="Scripts\bootstrap\collapse.js" />
+    <Content Include="Scripts\bootstrap\dropdown.js" />
+    <Content Include="Scripts\bootstrap\modal.js" />
+    <Content Include="Scripts\bootstrap\popover.js" />
+    <Content Include="Scripts\bootstrap\scrollspy.js" />
+    <Content Include="Scripts\bootstrap\tab.js" />
+    <Content Include="Scripts\bootstrap\tooltip.js" />
+    <Content Include="Scripts\bootstrap\transition.js" />
+    <Content Include="Scripts\CustomScripts\AllDirectoryScripts.js" />
+    <Content Include="Scripts\CustomScripts\CreateFileModalWindow.js" />
+    <Content Include="Scripts\CustomScripts\CreateFolderModalWindow.js" />
+    <Content Include="Scripts\CustomScripts\customJS.js" />
+    <Content Include="Scripts\CustomScripts\GetAllDirectoryTreeScripts.js" />
+    <Content Include="Scripts\CustomScripts\GetDriversTreeScripts.js" />
+    <Content Include="Scripts\CustomScripts\GetDrivesScript.js" />
+    <Content Include="Scripts\CustomScripts\SearchScripts.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
@@ -214,7 +309,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\underscore-awesomer.js" />
     <Content Include="Scripts\underscore-awesomer.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -254,7 +351,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

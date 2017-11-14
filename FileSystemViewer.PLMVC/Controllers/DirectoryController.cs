@@ -58,7 +58,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 					explorerObjects.Add(obj);
 				}
 			}
-			catch (UnauthorizedAccessException e)
+			catch (UnauthorizedAccessException )
 			{
 				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 			}
@@ -108,7 +108,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 				    explorerObjects.Add(obj);
 			    }
 		    }
-			catch (UnauthorizedAccessException e)
+			catch (UnauthorizedAccessException )
 			{
 				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 			}
@@ -171,7 +171,7 @@ namespace FileSystemViewer.PLMVC.Controllers
 					explorerObjects.Add(obj);
 				}
 			}
-			catch (UnauthorizedAccessException e)
+			catch (UnauthorizedAccessException )
 			{
 				return Json(new { Status = "NotAcceptable" }, JsonRequestBehavior.AllowGet);
 			}
