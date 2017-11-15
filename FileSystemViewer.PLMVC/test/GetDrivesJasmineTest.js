@@ -6,8 +6,6 @@ var recentDriveMgr;
 var container;
 
 
-
-
 describe("GetDrives jasmine test", function() {
 	var value, flag;
 
@@ -81,37 +79,86 @@ describe("GetDrives jasmine test", function() {
 	afterEach(function() {
 		sandbox.restore();
 		recentDriveMgr = undefined;
-		this.container = null; 
+		container = null; 
 		$('#main_container').remove();
 	});
 
-    it("and so is a spec", function() {
-    	debugger;
+    it("hangDblClick() method must hang dblclick and has correct respond", function() {
     	var callback = sandbox.spy();
     	recentDriveMgr.hangDblClick(callback);
 
 
-    	sinon.stub($, 'ajax');
+    	sandbox.stub($, 'ajax');
 
     	$('.drive').eq(1).trigger('dblclick');
 
 	    expect($.ajax.calledOnce).toBe(true);
 	    expect($.ajax.calledWithMatch({ url: '/Directory/GetAllDirectory/D' })).toBe(true);
+    });
 
-    	//runs(function() {
-    	//	flag = false;  // начальные значения
-         //   value = 0;
+    it("getPath() method must return correct string",function(){
+	    var getPathSpy = sandbox.spy(recentDriveMgr,"getPath");
 
-    	//    $('.drive').eq(1).trigger('dblclick');
-       // });
+	    expect(getPathSpy("item-C")).toBe("/Directory/GetAllDirectory/C");
+	    expect(getPathSpy.calledOnce).toBe(true);
+    });
+
+
+   // it("async",function(){
+    //	
+    //	flag = true; 
+
+    //   var errorCallback = function(){
+    //		flag = false;
+    		//expect(flag).toBe(true); 
+    //	};
+
+    //	var onErrorSpy =  sandbox.spy(errorCallback);
+
+    //	recentDriveMgr.hangDblClick(null,errorCallback);
+
+    //	$('.drive').eq(1).trigger('dblclick');
+        
 
       //  waitsFor(function() {
-      //      return flag; // ждет когда флаг переключится в true
-      //  }, "Message for timeout case", 750);
+      //     return flag; // ждет когда флаг переключится в true
+     //   }, "Message for timeout case", 1000);
 
-      //  runs(function() {
-      //      expect(callback.calledOnce).toBe(true);
-      //  });
+    //    runs(function() {
+    //        expect(flag).toBe(false);
+    //    });
+    //});
 
+
+   describe("Asynchronous tests", function() {
+        var flag, originalTimeout;
+
+        beforeEach(function() {
+           originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+           jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+        });
+
+        afterEach(function() {
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+        });
+
+        it("asdfync",function(done){
+    	    flag = true;  
+    	    debugger;
+
+    	    var errorCallback = function(){
+    		    flag = false;
+    		    done();
+    		    expect(flag).toBe(false);
+    		    expect(onErrorSpy.calledOnce).toBe(true); 
+    	    };
+
+    	    var onErrorSpy =  sandbox.spy(errorCallback);
+
+    	    recentDriveMgr.hangDblClick(null,onErrorSpy);
+
+    	    $('.drive').eq(1).trigger('dblclick');
+    	
+        });
     });
 }); 

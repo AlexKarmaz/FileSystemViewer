@@ -3,15 +3,17 @@
 var driveMgr = new DriveMgr();
 
 
-$(document).ready(function () {
+//$(document).ready(function () {
 
-    driveMgr.hangDblClick(driveMgr.onSuccess);
-});
+  //  driveMgr.hangDblClick(driveMgr.onSuccess,function(){
+    //    alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
+   // });
+//});
 
 function DriveMgr() {
     var self = this;
 
-    self.hangDblClick = function (callback){
+    self.hangDblClick = function (callbackSucess, onError){
         debugger;
         $(".drive").dblclick(function () {
         var url = self.getPath(this.id);
@@ -21,10 +23,10 @@ function DriveMgr() {
             url: url,
             type: "GET",
             success: function (result) {
-               callback(result);
+               callbackSucess(result);
             },
             error: function (){
-                alert('Oops, something bad happened. We workikg with the problem. Try it again. Description: ' + errorThrown + '.');
+                onError();
             }
         });
     });

@@ -94,7 +94,6 @@ QUnit.test("getPath() method must return correct string", function (assert) {
 QUnit.test("getLastPath() method must return correct string", function (assert) {   
     assert.strictEqual(getLastPathSpy(), "/Directory/GetAllDirectory/D", "result must equals to expect result");
     assert.ok(getLastPathSpy.calledOnce, "Get path method called once");
-
 });
 
 QUnit.test("hangDblClick() method must hang dblclick and has correct respond", function (assert) {	
@@ -107,7 +106,6 @@ QUnit.test("hangDblClick() method must hang dblclick and has correct respond", f
 
 	assert.ok($.ajax.calledOnce, "ajax call made");
 	assert.ok($.ajax.calledWithMatch({ url: '/Directory/GetAllDirectory/D%5Cdata' }), "Ajax must works good");
-
 });
 
 QUnit.test("backArrowClick() method must hang backArrowClick and has correct respond", function (assert) {  
@@ -120,7 +118,6 @@ QUnit.test("backArrowClick() method must hang backArrowClick and has correct res
 
     assert.ok($.ajax.calledOnce, "ajax call made");
     assert.ok($.ajax.calledWithMatch({ url: '/Directory/GetAllDirectory/D' }), "Ajax must works good");
-
 });
 
 
