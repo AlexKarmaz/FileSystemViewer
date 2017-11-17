@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemViewer.BLL.Interf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemViewer.PLMVC", "FileSystemViewer.PLMVC\FileSystemViewer.PLMVC.csproj", "{54CA7BB0-2FCE-457C-BBF8-9704C305E978}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemViewer.UnitTests", "FileSystemViewer.UnitTests\FileSystemViewer.UnitTests.csproj", "{7F1FA34A-0805-4255-A5BB-001AD01EABC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{54CA7BB0-2FCE-457C-BBF8-9704C305E978}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54CA7BB0-2FCE-457C-BBF8-9704C305E978}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54CA7BB0-2FCE-457C-BBF8-9704C305E978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1FA34A-0805-4255-A5BB-001AD01EABC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1FA34A-0805-4255-A5BB-001AD01EABC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1FA34A-0805-4255-A5BB-001AD01EABC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1FA34A-0805-4255-A5BB-001AD01EABC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

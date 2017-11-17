@@ -26,13 +26,13 @@ namespace FileSystemViewer.PLMVC.Controllers
 		[HttpGet]
 		public ActionResult Login()
 		{
-			return View();
+			return View("Login");
 		}
 
 		[HttpGet]
 		public ActionResult Register()
 		{
-			return View();
+			return View("Register");
 		}
 
 		[HttpPost]
@@ -109,11 +109,6 @@ namespace FileSystemViewer.PLMVC.Controllers
 			var user = userService.GetOneByPredicate(u => u.UserName == userName).ToMvcUser(roleService);
 			int userId = user.Id;
 
-			if (user == null)
-			{
-				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-			}
-
 			if (user.Roles.Contains(roleName))
 			{
 				roleService.RemoveRoleFromUser(userId, roleService.GetAll().FirstOrDefault(r => r.Name == roleName).Id);
@@ -127,40 +122,5 @@ namespace FileSystemViewer.PLMVC.Controllers
 				return PartialView(user);
 			return View(user);
 		}
-
-		//[HttpGet]
-		//public ActionResult GetAllUsers()
-		//{
-		//	string[] roles;
-		//	int i = 0;
-		//	var users = userService.GetAllByPredicate(u => u.UserName != User.Identity.Name);
-		//	var mvcUsers = users.Select(u => u.ToMvcAllUsers());
-		//	ShowUsersViewModel[] newUsers = new ShowUsersViewModel[mvcUsers.Count()];
-		//	foreach (var mvcUser in mvcUsers)
-		//	{
-		//		roles = userService.GetRolesForUser(mvcUser.UserName);
-		//		mvcUser.RoleNames = string.Join(",", roles);
-		//		newUsers[i] = new ShowUsersViewModel { Id = mvcUser.Id, Email = mvcUser.Email, UserName = mvcUser.UserName, RoleNames = string.Join(",", roles) };
-		//		i++;
-		//	}
-		//	if (Request.IsAjaxRequest())
-		//		return PartialView("_ShowAllUsers", newUsers);
-		//	return View("_ShowAllUsers", mvcUsers);
-		//}
-
-		//[HttpGet]
-		//[Authorize(Roles = "Admin")]
-		//public ActionResult DeleteUser(int userId)
-		//{
-		//	var userToDelete = userService.GetById(userId);
-		//	userService.Delete(userToDelete);
-
-		//	profileService.DeleteTestReference(userId);
-
-		//	var userProfile = profileService.GetById(userId);
-		//	profileService.Delete(userProfile);
-
-		//	return RedirectToAction("GetAllUsers");
-		//}
 	}
 }

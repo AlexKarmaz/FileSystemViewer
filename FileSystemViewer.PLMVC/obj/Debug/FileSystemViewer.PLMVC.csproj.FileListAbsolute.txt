@@ -51,3 +51,8 @@ C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer
 C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Antlr3.Runtime.pdb
 C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Newtonsoft.Json.xml
 C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\System.Web.Optimization.xml
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Castle.Core.dll
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Moq.dll
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Castle.Core.xml
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Moq.pdb
+C:\Users\Aleksey_Karmaz\documents\visual studio 2013\Projects\File system viewer\FileSystemViewer.PLMVC\bin\Moq.xml
