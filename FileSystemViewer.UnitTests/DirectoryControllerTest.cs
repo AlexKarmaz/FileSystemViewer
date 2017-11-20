@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using FileSystemViewer.BLL.Interface.Entities;
 using FileSystemViewer.BLL.Interface.Interfaces;
 using FileSystemViewer.PLMVC.Controllers;
 using FileSystemViewer.PLMVC.Models.Directory;
@@ -171,7 +173,6 @@ namespace FileSystemViewer.UnitTests
 			Assert.IsNotNull(result);
 			fileServiceMock.Verify(a => a.DeleteFile("D:/data"));
 		}
-		//
 
 		[TestMethod]
 		public void CreateFolder_EmptyPath_ReturnStatusCode400()
@@ -293,6 +294,55 @@ namespace FileSystemViewer.UnitTests
 
 			Assert.IsNotNull(result);
 			fileServiceMock.Verify(a => a.CreateFile(It.IsAny<string>()));
+		}
+
+		[TestMethod]
+		public void Search_EmptySearchString_ReturnStatusCode400()
+		{
+			DirectoryController controller = new DirectoryController(directoryServiceMock.Object, fileServiceMock.Object, searchServiceMock.Object);
+
+			HttpStatusCodeResult result = controller.Search("") as HttpStatusCodeResult;
+
+			Assert.IsNotNull(result);
+			Assert.AreEqual(400, result.StatusCode);
+		}
+
+		[TestMethod]
+		public void Search_EmptyPath_RedirectToAnotherUrl()
+		{
+			string expected = "/Drive/GetDrives/";
+			DirectoryController controller = new DirectoryController(directoryServiceMock.Object, fileServiceMock.Object, searchServiceMock.Object);
+
+			RedirectResult result = controller.Search("test","") as RedirectResult;
+
+			Assert.IsNotNull(result);
+			Assert.AreEqual(expected, result.Url);
+		}
+
+		[TestMethod]
+		public void Search_ThrowException_ReturnJsonResult()
+		{
+			searchServiceMock.Setup(a => a.SearchDirectories(It.IsAny<String>(),It.IsAny<string>(),It.IsAny<List<BllSearchResult>>())).Throws<UnauthorizedAccessException>();
+			DirectoryController controller = new DirectoryController(directoryServiceMock.Object, fileServiceMock.Object, searchServiceMock.Object);
+
+			JsonResult result = controller.Search("new","D/") as JsonResult;
+
+			Assert.IsNotNull(result);
+			Assert.AreEqual("{ Status = NotAcceptable }", result.Data.ToString());
+		}
+
+		[TestMethod]
+		public void Search_PositiveTest_ReturnCorrectModel()
+		{
+			fileServiceMock.Setup(a => a.GetParrent(It.IsAny<string>())).Returns("D/");
+			DirectoryController controller = new DirectoryController(directoryServiceMock.Object, fileServiceMock.Object, searchServiceMock.Object);
+			controller.ControllerContext = new ControllerContext(HttpContextBaseMock.Object, new RouteData(), controller);
+
+			ViewResult result = controller.Search("test","D/") as ViewResult;
+
+			Assert.IsNotNull(result);
+			Assert.AreEqual("Search", result.ViewName);
+			Assert.AreEqual("D\\\\", result.ViewData["LastPath"]);
 		}
 	}
 }
